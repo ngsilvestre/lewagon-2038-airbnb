@@ -1,5 +1,7 @@
 class ListingsController < ApplicationController
   before_action :set_listing, only: %i[ show  update ]
+  skip_before_action :authenticate_user!, only: %i[index]
+  
   def index
     @listings = Listing.all
   end
