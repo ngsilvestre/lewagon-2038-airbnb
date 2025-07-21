@@ -1,0 +1,21 @@
+<%= simple_form_for(listing) do | f | %>
+  <% if listing.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(listing.errors.count, "error") %> prohibited this listing from being saved:</h2>
+
+      <ul>
+        <% listing.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <%= f.association :owner, label_method: :email %>
+  <%= f.input :location %>
+  <%= f.input :price, as: :decimal, step: 0.01 %>
+  <%= f.input :num_guests, label: "Number of Guests" %>
+  <%= f.input :description, as: :text %>
+  <%= f.button :submit %>
+<% end %>

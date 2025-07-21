@@ -1,1 +1,16 @@
-<h1>Homepage</h1>
+ <%#= link_to "Add Listing" new_listing_path  %>
+
+<div class="container mx-auto">
+  <div class="grid grid-cols-3 gap-4">
+    <% @listings.each do |listing| %>
+  <%= link_to(listing_path(listing)) do %>
+    <div>
+      <h2><%= listing.location %></h2>
+      <p><%= listing.num_guests %> persons</p>
+      <p><%= number_to_currency(listing.price, unit: "$") %>/day</p>
+    </div>
+  <% end %>
+<% end %>
+
+  </div>
+</div>
