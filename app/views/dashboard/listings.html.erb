@@ -1,0 +1,12 @@
+<h1>Your listings</h1>
+
+<% @user_listings.each do |listing| %>
+  render <%= listing %> patial
+  <br>
+  <% listing.bookings.each do |booking| %>
+    <p><%= booking.user.email %></p>
+    <br>
+    <p><%= booking.start_date %> <%= booking.end_date %></p>
+    <p><%= booking.status_confirmed %></p>
+  <% end %>
+<% end %>
