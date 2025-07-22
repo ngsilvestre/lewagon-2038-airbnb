@@ -5,6 +5,8 @@
 
    <div class="form-inputs">
     <%= f.input :location %>
+      <%#= image_tag @listing.photo.variant(resize_to_limit: [300, 300]) if @listing.photo.variable? %>
+      <%#= link_to 'Delete', delete_photo_listing_path(@listing, photo.id), method: :delete, data: { confirm: 'Are you sure?' } %>
     <%= f.input :photos, as: :file, input_html: { multiple: true } %>
     <%= f.input :price, as: :float, input_html: { step: 0.01, min: 0 } %>
     <%= f.input :num_guests, as: :integer, input_html: { min: 1 } %>
