@@ -1,53 +1,25 @@
 # frozen_string_literal: true
 
-# These defaults are defined and maintained by the community at
-# https://github.com/heartcombo/simple_form-bootstrap
-# Please submit feedback, changes and tests only there.
-
-# Uncomment this and change the path if necessary to include your own
-# components.
-# See https://github.com/heartcombo/simple_form#custom-components
-# to know more about custom components.
-# Dir[Rails.root.join('lib/components/**/*.rb')].each { |f| require f }
-
-# Use this setup block to configure all options available in SimpleForm.
 SimpleForm.setup do |config|
-  # Default class for buttons
-  config.button_class = 'btn'
+  # Button class (already Tailwind)
+  config.button_class = "relative inline-flex items-center rounded-md bg-sky-600 px-2.5 py-2 text-sm font-semibold text-white shadow-xs hover:bg-sky-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
 
-  # Define the default class of the input wrapper of the boolean input.
-  config.boolean_label_class = 'form-check-label'
+  # Boolean label class (tailwind switch)
+  config.boolean_label_class = "ml-2 text-sm font-medium text-gray-700"
 
-  # How the label text should be generated altogether with the required text.
   config.label_text = lambda { |label, required, explicit_label| "#{label} #{required}" }
-
-  # Define the way to render check boxes / radio buttons with labels.
   config.boolean_style = :inline
-
-  # You can wrap each item in a collection of radio/check boxes with a tag
   config.item_wrapper_tag = :div
-
-  # Defines if the default input wrapper class should be included in radio
-  # collection wrappers.
   config.include_default_input_wrapper_class = false
 
-  # CSS class to add for error notification helper.
-  config.error_notification_class = 'alert alert-danger'
-
-  # Method used to tidy up errors. Specify any Rails Array method.
-  # :first lists the first message for each field.
-  # :to_sentence to list all errors for each field.
+  config.error_notification_class = "rounded bg-red-100 p-4 mb-4 text-red-700 text-sm"
   config.error_method = :to_sentence
 
-  # add validation classes to `input_field`
-  config.input_field_error_class = 'is-invalid'
-  config.input_field_valid_class = 'is-valid'
+  config.input_field_error_class = "ring-2 ring-red-500"
+  config.input_field_valid_class = "ring-2 ring-green-500"
 
-
-  # vertical forms
-  #
-  # vertical default_wrapper
-  config.wrappers :vertical_form, class: 'mb-3' do |b|
+  # Vertical form (default)
+  config.wrappers :vertical_form, class: "mb-4" do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
@@ -55,100 +27,97 @@ SimpleForm.setup do |config|
     b.optional :pattern
     b.optional :min_max
     b.optional :readonly
-    b.use :label, class: 'form-label'
-    b.use :input, class: 'form-control', error_class: 'is-invalid', valid_class: 'is-valid'
-    b.use :full_error, wrap_with: { class: 'invalid-feedback' }
-    b.use :hint, wrap_with: { class: 'form-text' }
+    b.use :label, class: "block text-sm font-medium text-gray-900 mb-1"
+    b.use :input, class: "block w-full rounded-md border border-gray-300 bg-white px-2.5 py-2 text-base text-gray-900 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-600", error_class: "block w-full rounded-md border border-red-300 bg-white px-2.5 py-2 text-base text-red-900 placeholder-red-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-600", valid_class: "ring-2 ring-green-500"
+    b.use :full_error, wrap_with: { class: "mt-1 text-sm text-red-600" }
+    b.use :hint, wrap_with: { class: "mt-2 text-sm text-gray-500" }
   end
 
-  # vertical input for boolean
-  config.wrappers :vertical_boolean, tag: 'fieldset', class: 'mb-3' do |b|
+  # Vertical boolean (checkbox/switch)
+  config.wrappers :vertical_boolean, tag: "fieldset", class: "mb-4" do |b|
     b.use :html5
     b.optional :readonly
-    b.wrapper :form_check_wrapper, class: 'form-check' do |bb|
-      bb.use :input, class: 'form-check-input', error_class: 'is-invalid', valid_class: 'is-valid'
-      bb.use :label, class: 'form-check-label'
-      bb.use :full_error, wrap_with: { class: 'invalid-feedback' }
-      bb.use :hint, wrap_with: { class: 'form-text' }
+    b.wrapper :form_check_wrapper, class: "flex items-center" do |bb|
+      bb.use :input, class: "h-4 w-4 text-sky-600 border-gray-300 rounded focus:ring-sky-600", error_class: "h-4 w-4 text-red-600 border-red-300 rounded focus:ring-red-600", valid_class: "ring-2 ring-green-500"
+      bb.use :label, class: "ml-2 text-sm font-medium text-gray-700"
+      bb.use :full_error, wrap_with: { class: "ml-6 text-sm text-red-600" }
+      bb.use :hint, wrap_with: { class: "ml-6 text-sm text-gray-500" }
     end
   end
 
-  # vertical input for radio buttons and check boxes
-  config.wrappers :vertical_collection, item_wrapper_class: 'form-check', item_label_class: 'form-check-label', tag: 'fieldset', class: 'mb-3' do |b|
+  # Vertical collection (radios/checkboxes)
+  config.wrappers :vertical_collection, item_wrapper_class: "flex items-center mb-2", item_label_class: "ml-2 text-sm font-medium text-gray-700", tag: "fieldset", class: "mb-4" do |b|
     b.use :html5
     b.optional :readonly
-    b.wrapper :legend_tag, tag: 'legend', class: 'col-form-label pt-0' do |ba|
+    b.wrapper :legend_tag, tag: "legend", class: "block text-sm font-medium text-gray-900 mb-2" do |ba|
       ba.use :label_text
     end
-    b.use :input, class: 'form-check-input', error_class: 'is-invalid', valid_class: 'is-valid'
-    b.use :full_error, wrap_with: { class: 'invalid-feedback d-block' }
-    b.use :hint, wrap_with: { class: 'form-text' }
+    b.use :input, class: "h-4 w-4 text-sky-600 border-gray-300 rounded focus:ring-sky-600", error_class: "h-4 w-4 text-red-600 border-red-300 rounded focus:ring-red-600", valid_class: "ring-2 ring-green-500"
+    b.use :full_error, wrap_with: { class: "mt-1 text-sm text-red-600" }
+    b.use :hint, wrap_with: { class: "mt-2 text-sm text-gray-500" }
   end
 
-  # vertical input for inline radio buttons and check boxes
-  config.wrappers :vertical_collection_inline, item_wrapper_class: 'form-check form-check-inline', item_label_class: 'form-check-label', tag: 'fieldset', class: 'mb-3' do |b|
+  config.wrappers :vertical_collection_inline, item_wrapper_class: "inline-flex items-center mr-4", item_label_class: "ml-2 text-sm font-medium text-gray-700", tag: "fieldset", class: "mb-4" do |b|
     b.use :html5
     b.optional :readonly
-    b.wrapper :legend_tag, tag: 'legend', class: 'col-form-label pt-0' do |ba|
+    b.wrapper :legend_tag, tag: "legend", class: "block text-sm font-medium text-gray-900 mb-2" do |ba|
       ba.use :label_text
     end
-    b.use :input, class: 'form-check-input', error_class: 'is-invalid', valid_class: 'is-valid'
-    b.use :full_error, wrap_with: { class: 'invalid-feedback d-block' }
-    b.use :hint, wrap_with: { class: 'form-text' }
+    b.use :input, class: "h-4 w-4 text-sky-600 border-gray-300 rounded focus:ring-sky-600", error_class: "h-4 w-4 text-red-600 border-red-300 rounded focus:ring-red-600", valid_class: "ring-2 ring-green-500"
+    b.use :full_error, wrap_with: { class: "mt-1 text-sm text-red-600" }
+    b.use :hint, wrap_with: { class: "mt-2 text-sm text-gray-500" }
   end
 
-  # vertical file input
-  config.wrappers :vertical_file, class: 'mb-3' do |b|
+  # File input
+  config.wrappers :vertical_file, class: "mb-4" do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
     b.optional :minlength
     b.optional :readonly
-    b.use :label, class: 'form-label'
-    b.use :input, class: 'form-control', error_class: 'is-invalid', valid_class: 'is-valid'
-    b.use :full_error, wrap_with: { class: 'invalid-feedback' }
-    b.use :hint, wrap_with: { class: 'form-text' }
+    b.use :label, class: "block text-sm font-medium text-gray-900 mb-1"
+    b.use :input, class: "block w-full text-sm text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-sky-50 file:text-sky-700 hover:file:bg-sky-100", error_class: "block w-full text-sm text-red-700 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100", valid_class: "ring-2 ring-green-500"
+    b.use :full_error, wrap_with: { class: "mt-1 text-sm text-red-600" }
+    b.use :hint, wrap_with: { class: "mt-2 text-sm text-gray-500" }
   end
 
-  # vertical select input
-  config.wrappers :vertical_select, class: 'mb-3' do |b|
+  # Select input
+  config.wrappers :vertical_select, class: "mb-4" do |b|
     b.use :html5
     b.optional :readonly
-    b.use :label, class: 'form-label'
-    b.use :input, class: 'form-select', error_class: 'is-invalid', valid_class: 'is-valid'
-    b.use :full_error, wrap_with: { class: 'invalid-feedback' }
-    b.use :hint, wrap_with: { class: 'form-text' }
+    b.use :label, class: "block text-sm font-medium text-gray-900 mb-1"
+    b.use :input, class: "block w-full rounded-md border border-gray-300 bg-white px-2.5 py-2 text-base text-gray-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-600", error_class: "block w-full rounded-md border border-red-300 bg-white px-2.5 py-2 text-base text-red-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-600", valid_class: "ring-2 ring-green-500"
+    b.use :full_error, wrap_with: { class: "mt-1 text-sm text-red-600" }
+    b.use :hint, wrap_with: { class: "mt-2 text-sm text-gray-500" }
   end
 
-  # vertical multi select
-  config.wrappers :vertical_multi_select, class: 'mb-3' do |b|
+  # Multi select
+  config.wrappers :vertical_multi_select, class: "mb-4" do |b|
     b.use :html5
     b.optional :readonly
-    b.use :label, class: 'form-label'
-    b.wrapper class: 'd-flex flex-row justify-content-between align-items-center' do |ba|
-      ba.use :input, class: 'form-select mx-1', error_class: 'is-invalid', valid_class: 'is-valid'
+    b.use :label, class: "block text-sm font-medium text-gray-900 mb-1"
+    b.wrapper class: "flex flex-row justify-between items-center" do |ba|
+      ba.use :input, class: "block w-full rounded-md border border-gray-300 bg-white px-2.5 py-2 text-base text-gray-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-600 mx-1", error_class: "block w-full rounded-md border border-red-300 bg-white px-2.5 py-2 text-base text-red-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-600 mx-1", valid_class: "ring-2 ring-green-500"
     end
-    b.use :full_error, wrap_with: { class: 'invalid-feedback d-block' }
-    b.use :hint, wrap_with: { class: 'form-text' }
+    b.use :full_error, wrap_with: { class: "mt-1 text-sm text-red-600" }
+    b.use :hint, wrap_with: { class: "mt-2 text-sm text-gray-500" }
   end
 
-  # vertical range input
-  config.wrappers :vertical_range, class: 'mb-3' do |b|
+  # Range input
+  config.wrappers :vertical_range, class: "mb-4" do |b|
     b.use :html5
     b.use :placeholder
     b.optional :readonly
     b.optional :step
-    b.use :label, class: 'form-label'
-    b.use :input, class: 'form-range', error_class: 'is-invalid', valid_class: 'is-valid'
-    b.use :full_error, wrap_with: { class: 'invalid-feedback' }
-    b.use :hint, wrap_with: { class: 'form-text' }
+    b.use :label, class: "block text-sm font-medium text-gray-900 mb-1"
+    b.use :input, class: "w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer", error_class: "w-full h-2 bg-red-200 rounded-lg appearance-none cursor-pointer", valid_class: "ring-2 ring-green-500"
+    b.use :full_error, wrap_with: { class: "mt-1 text-sm text-red-600" }
+    b.use :hint, wrap_with: { class: "mt-2 text-sm text-gray-500" }
   end
 
+  # --- HORIZONTAL (2-column) FORM WRAPPERS ---
 
-  # horizontal forms
-  #
-  # horizontal default_wrapper
-  config.wrappers :horizontal_form, class: 'row mb-3' do |b|
+  config.wrappers :horizontal_form, class: "grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4 items-center" do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
@@ -156,112 +125,102 @@ SimpleForm.setup do |config|
     b.optional :pattern
     b.optional :min_max
     b.optional :readonly
-    b.use :label, class: 'col-sm-3 col-form-label'
-    b.wrapper :grid_wrapper, class: 'col-sm-9' do |ba|
-      ba.use :input, class: 'form-control', error_class: 'is-invalid', valid_class: 'is-valid'
-      ba.use :full_error, wrap_with: { class: 'invalid-feedback' }
-      ba.use :hint, wrap_with: { class: 'form-text' }
+    b.use :label, class: "text-sm font-medium text-gray-900"
+    b.wrapper :grid_wrapper, class: "sm:col-span-2" do |ba|
+      ba.use :input, class: "block w-full rounded-md border border-gray-300 bg-white px-2.5 py-2 text-base text-gray-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-600", error_class: "block w-full rounded-md border border-red-300 bg-white px-2.5 py-2 text-base text-red-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-600", valid_class: "ring-2 ring-green-500"
+      ba.use :full_error, wrap_with: { class: "mt-1 text-sm text-red-600" }
+      ba.use :hint, wrap_with: { class: "mt-2 text-sm text-gray-500" }
     end
   end
 
-  # horizontal input for boolean
-  config.wrappers :horizontal_boolean, class: 'row mb-3' do |b|
+  config.wrappers :horizontal_boolean, class: "grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4 items-center" do |b|
     b.use :html5
     b.optional :readonly
-    b.wrapper :grid_wrapper, class: 'col-sm-9 offset-sm-3' do |wr|
-      wr.wrapper :form_check_wrapper, class: 'form-check' do |bb|
-        bb.use :input, class: 'form-check-input', error_class: 'is-invalid', valid_class: 'is-valid'
-        bb.use :label, class: 'form-check-label'
-        bb.use :full_error, wrap_with: { class: 'invalid-feedback' }
-        bb.use :hint, wrap_with: { class: 'form-text' }
+    b.wrapper :grid_wrapper, class: "sm:col-span-2 sm:col-start-2" do |wr|
+      wr.wrapper :form_check_wrapper, class: "flex items-center" do |bb|
+        bb.use :input, class: "h-4 w-4 text-sky-600 border-gray-300 rounded focus:ring-sky-600", error_class: "h-4 w-4 text-red-600 border-red-300 rounded focus:ring-red-600", valid_class: "ring-2 ring-green-500"
+        bb.use :label, class: "ml-2 text-sm font-medium text-gray-700"
+        bb.use :full_error, wrap_with: { class: "ml-6 text-sm text-red-600" }
+        bb.use :hint, wrap_with: { class: "ml-6 text-sm text-gray-500" }
       end
     end
   end
 
-  # horizontal input for radio buttons and check boxes
-  config.wrappers :horizontal_collection, item_wrapper_class: 'form-check', item_label_class: 'form-check-label', class: 'row mb-3' do |b|
+  config.wrappers :horizontal_collection, item_wrapper_class: "flex items-center mb-2", item_label_class: "ml-2 text-sm font-medium text-gray-700", class: "grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4 items-center" do |b|
     b.use :html5
     b.optional :readonly
-    b.use :label, class: 'col-sm-3 col-form-label pt-0'
-    b.wrapper :grid_wrapper, class: 'col-sm-9' do |ba|
-      ba.use :input, class: 'form-check-input', error_class: 'is-invalid', valid_class: 'is-valid'
-      ba.use :full_error, wrap_with: { class: 'invalid-feedback d-block' }
-      ba.use :hint, wrap_with: { class: 'form-text' }
+    b.use :label, class: "text-sm font-medium text-gray-900"
+    b.wrapper :grid_wrapper, class: "sm:col-span-2" do |ba|
+      ba.use :input, class: "h-4 w-4 text-sky-600 border-gray-300 rounded focus:ring-sky-600", error_class: "h-4 w-4 text-red-600 border-red-300 rounded focus:ring-red-600", valid_class: "ring-2 ring-green-500"
+      ba.use :full_error, wrap_with: { class: "mt-1 text-sm text-red-600" }
+      ba.use :hint, wrap_with: { class: "mt-2 text-sm text-gray-500" }
     end
   end
 
-  # horizontal input for inline radio buttons and check boxes
-  config.wrappers :horizontal_collection_inline, item_wrapper_class: 'form-check form-check-inline', item_label_class: 'form-check-label', class: 'row mb-3' do |b|
+  config.wrappers :horizontal_collection_inline, item_wrapper_class: "inline-flex items-center mr-4", item_label_class: "ml-2 text-sm font-medium text-gray-700", class: "grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4 items-center" do |b|
     b.use :html5
     b.optional :readonly
-    b.use :label, class: 'col-sm-3 col-form-label pt-0'
-    b.wrapper :grid_wrapper, class: 'col-sm-9' do |ba|
-      ba.use :input, class: 'form-check-input', error_class: 'is-invalid', valid_class: 'is-valid'
-      ba.use :full_error, wrap_with: { class: 'invalid-feedback d-block' }
-      ba.use :hint, wrap_with: { class: 'form-text' }
+    b.use :label, class: "text-sm font-medium text-gray-900"
+    b.wrapper :grid_wrapper, class: "sm:col-span-2" do |ba|
+      ba.use :input, class: "h-4 w-4 text-sky-600 border-gray-300 rounded focus:ring-sky-600", error_class: "h-4 w-4 text-red-600 border-red-300 rounded focus:ring-red-600", valid_class: "ring-2 ring-green-500"
+      ba.use :full_error, wrap_with: { class: "mt-1 text-sm text-red-600" }
+      ba.use :hint, wrap_with: { class: "mt-2 text-sm text-gray-500" }
     end
   end
 
-  # horizontal file input
-  config.wrappers :horizontal_file, class: 'row mb-3' do |b|
+  config.wrappers :horizontal_file, class: "grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4 items-center" do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
     b.optional :minlength
     b.optional :readonly
-    b.use :label, class: 'col-sm-3 col-form-label'
-    b.wrapper :grid_wrapper, class: 'col-sm-9' do |ba|
-      ba.use :input, class: 'form-control', error_class: 'is-invalid', valid_class: 'is-valid'
-      ba.use :full_error, wrap_with: { class: 'invalid-feedback' }
-      ba.use :hint, wrap_with: { class: 'form-text' }
+    b.use :label, class: "text-sm font-medium text-gray-900"
+    b.wrapper :grid_wrapper, class: "sm:col-span-2" do |ba|
+      ba.use :input, class: "block w-full text-sm text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-sky-50 file:text-sky-700 hover:file:bg-sky-100", error_class: "block w-full text-sm text-red-700 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100", valid_class: "ring-2 ring-green-500"
+      ba.use :full_error, wrap_with: { class: "mt-1 text-sm text-red-600" }
+      ba.use :hint, wrap_with: { class: "mt-2 text-sm text-gray-500" }
     end
   end
 
-  # horizontal select input
-  config.wrappers :horizontal_select, class: 'row mb-3' do |b|
+  config.wrappers :horizontal_select, class: "grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4 items-center" do |b|
     b.use :html5
     b.optional :readonly
-    b.use :label, class: 'col-sm-3 col-form-label'
-    b.wrapper :grid_wrapper, class: 'col-sm-9' do |ba|
-      ba.use :input, class: 'form-select', error_class: 'is-invalid', valid_class: 'is-valid'
-      ba.use :full_error, wrap_with: { class: 'invalid-feedback' }
-      ba.use :hint, wrap_with: { class: 'form-text' }
+    b.use :label, class: "text-sm font-medium text-gray-900"
+    b.wrapper :grid_wrapper, class: "sm:col-span-2" do |ba|
+      ba.use :input, class: "block w-full rounded-md border border-gray-300 bg-white px-2.5 py-2 text-base text-gray-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-600", error_class: "block w-full rounded-md border border-red-300 bg-white px-2.5 py-2 text-base text-red-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-600", valid_class: "ring-2 ring-green-500"
+      ba.use :full_error, wrap_with: { class: "mt-1 text-sm text-red-600" }
+      ba.use :hint, wrap_with: { class: "mt-2 text-sm text-gray-500" }
     end
   end
 
-  # horizontal multi select
-  config.wrappers :horizontal_multi_select, class: 'row mb-3' do |b|
+  config.wrappers :horizontal_multi_select, class: "grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4 items-center" do |b|
     b.use :html5
     b.optional :readonly
-    b.use :label, class: 'col-sm-3 col-form-label'
-    b.wrapper :grid_wrapper, class: 'col-sm-9' do |ba|
-      ba.wrapper class: 'd-flex flex-row justify-content-between align-items-center' do |bb|
-        bb.use :input, class: 'form-select mx-1', error_class: 'is-invalid', valid_class: 'is-valid'
+    b.use :label, class: "text-sm font-medium text-gray-900"
+    b.wrapper :grid_wrapper, class: "sm:col-span-2" do |ba|
+      ba.wrapper class: "flex flex-row justify-between items-center" do |bb|
+        bb.use :input, class: "block w-full rounded-md border border-gray-300 bg-white px-2.5 py-2 text-base text-gray-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-600 mx-1", error_class: "block w-full rounded-md border border-red-300 bg-white px-2.5 py-2 text-base text-red-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-600 mx-1", valid_class: "ring-2 ring-green-500"
       end
-      ba.use :full_error, wrap_with: { class: 'invalid-feedback d-block' }
-      ba.use :hint, wrap_with: { class: 'form-text' }
+      ba.use :full_error, wrap_with: { class: "mt-1 text-sm text-red-600" }
+      ba.use :hint, wrap_with: { class: "mt-2 text-sm text-gray-500" }
     end
   end
 
-  # horizontal range input
-  config.wrappers :horizontal_range, class: 'row mb-3' do |b|
+  config.wrappers :horizontal_range, class: "grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4 items-center" do |b|
     b.use :html5
     b.use :placeholder
     b.optional :readonly
     b.optional :step
-    b.use :label, class: 'col-sm-3 col-form-label pt-0'
-    b.wrapper :grid_wrapper, class: 'col-sm-9' do |ba|
-      ba.use :input, class: 'form-range', error_class: 'is-invalid', valid_class: 'is-valid'
-      ba.use :full_error, wrap_with: { class: 'invalid-feedback' }
-      ba.use :hint, wrap_with: { class: 'form-text' }
+    b.use :label, class: "text-sm font-medium text-gray-900"
+    b.wrapper :grid_wrapper, class: "sm:col-span-2" do |ba|
+      ba.use :input, class: "w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer", error_class: "w-full h-2 bg-red-200 rounded-lg appearance-none cursor-pointer", valid_class: "ring-2 ring-green-500"
+      ba.use :full_error, wrap_with: { class: "mt-1 text-sm text-red-600" }
+      ba.use :hint, wrap_with: { class: "mt-2 text-sm text-gray-500" }
     end
   end
 
-
-  # inline forms
-  #
-  # inline default_wrapper
-  config.wrappers :inline_form, class: 'col-12' do |b|
+  # Inline forms
+  config.wrappers :inline_form, class: "w-full" do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
@@ -269,44 +228,37 @@ SimpleForm.setup do |config|
     b.optional :pattern
     b.optional :min_max
     b.optional :readonly
-    b.use :label, class: 'visually-hidden'
-
-    b.use :input, class: 'form-control', error_class: 'is-invalid', valid_class: 'is-valid'
-    b.use :error, wrap_with: { class: 'invalid-feedback' }
-    b.optional :hint, wrap_with: { class: 'form-text' }
+    b.use :label, class: "sr-only"
+    b.use :input, class: "block w-full rounded-md border border-gray-300 bg-white px-2.5 py-2 text-base text-gray-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-600", error_class: "block w-full rounded-md border border-red-300 bg-white px-2.5 py-2 text-base text-red-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-600", valid_class: "ring-2 ring-green-500"
+    b.use :error, wrap_with: { class: "mt-1 text-sm text-red-600" }
+    b.optional :hint, wrap_with: { class: "mt-2 text-sm text-gray-500" }
   end
 
-  # inline input for boolean
-  config.wrappers :inline_boolean, class: 'col-12' do |b|
+  config.wrappers :inline_boolean, class: "w-full" do |b|
     b.use :html5
     b.optional :readonly
-    b.wrapper :form_check_wrapper, class: 'form-check' do |bb|
-      bb.use :input, class: 'form-check-input', error_class: 'is-invalid', valid_class: 'is-valid'
-      bb.use :label, class: 'form-check-label'
-      bb.use :error, wrap_with: { class: 'invalid-feedback' }
-      bb.optional :hint, wrap_with: { class: 'form-text' }
+    b.wrapper :form_check_wrapper, class: "flex items-center" do |bb|
+      bb.use :input, class: "h-4 w-4 text-sky-600 border-gray-300 rounded focus:ring-sky-600", error_class: "h-4 w-4 text-red-600 border-red-300 rounded focus:ring-red-600", valid_class: "ring-2 ring-green-500"
+      bb.use :label, class: "ml-2 text-sm font-medium text-gray-700"
+      bb.use :error, wrap_with: { class: "ml-6 text-sm text-red-600" }
+      bb.optional :hint, wrap_with: { class: "ml-6 text-sm text-gray-500" }
     end
   end
 
-
-  # bootstrap custom forms
-  #
-  # custom input switch for boolean
-  config.wrappers :custom_boolean_switch, class: 'mb-3' do |b|
+  # Custom Boolean Switch
+  config.wrappers :custom_boolean_switch, class: "mb-4" do |b|
     b.use :html5
     b.optional :readonly
-    b.wrapper :form_check_wrapper, tag: 'div', class: 'form-check form-switch' do |bb|
-      bb.use :input, class: 'form-check-input', error_class: 'is-invalid', valid_class: 'is-valid'
-      bb.use :label, class: 'form-check-label'
-      bb.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback' }
-      bb.use :hint, wrap_with: { class: 'form-text' }
+    b.wrapper :form_check_wrapper, tag: "div", class: "flex items-center" do |bb|
+      bb.use :input, class: "h-4 w-8 rounded-full bg-gray-200 checked:bg-sky-600 focus:ring-sky-600 transition duration-200 align-middle", error_class: "h-4 w-8 rounded-full bg-red-200 checked:bg-red-600 focus:ring-red-600 transition duration-200 align-middle", valid_class: "ring-2 ring-green-500"
+      bb.use :label, class: "ml-2 text-sm font-medium text-gray-700"
+      bb.use :full_error, wrap_with: { tag: "div", class: "ml-6 text-sm text-red-600" }
+      bb.use :hint, wrap_with: { class: "ml-6 text-sm text-gray-500" }
     end
   end
 
-
-  # Input Group - custom component
-  # see example app and config at https://github.com/heartcombo/simple_form-bootstrap
-  config.wrappers :input_group, class: 'mb-3' do |b|
+  # Input Group (prepend/append)
+  config.wrappers :input_group, class: "mb-4" do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
@@ -314,21 +266,18 @@ SimpleForm.setup do |config|
     b.optional :pattern
     b.optional :min_max
     b.optional :readonly
-    b.use :label, class: 'form-label'
-    b.wrapper :input_group_tag, class: 'input-group' do |ba|
+    b.use :label, class: "block text-sm font-medium text-gray-900 mb-1"
+    b.wrapper :input_group_tag, class: "flex" do |ba|
       ba.optional :prepend
-      ba.use :input, class: 'form-control', error_class: 'is-invalid', valid_class: 'is-valid'
+      ba.use :input, class: "block w-full rounded-md border border-gray-300 bg-white px-2.5 py-2 text-base text-gray-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-600", error_class: "block w-full rounded-md border border-red-300 bg-white px-2.5 py-2 text-base text-red-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-600", valid_class: "ring-2 ring-green-500"
       ba.optional :append
-      ba.use :full_error, wrap_with: { class: 'invalid-feedback' }
+      ba.use :full_error, wrap_with: { class: "mt-1 text-sm text-red-600" }
     end
-    b.use :hint, wrap_with: { class: 'form-text' }
+    b.use :hint, wrap_with: { class: "mt-2 text-sm text-gray-500" }
   end
 
-
-  # Floating Labels form
-  #
-  # floating labels default_wrapper
-  config.wrappers :floating_labels_form, class: 'form-floating mb-3' do |b|
+  # Floating Labels (Tailwind only supports this visually via custom classes or plugins, so just use defaults)
+  config.wrappers :floating_labels_form, class: "relative mb-4" do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
@@ -336,28 +285,23 @@ SimpleForm.setup do |config|
     b.optional :pattern
     b.optional :min_max
     b.optional :readonly
-    b.use :input, class: 'form-control', error_class: 'is-invalid', valid_class: 'is-valid'
-    b.use :label
-    b.use :full_error, wrap_with: { class: 'invalid-feedback' }
-    b.use :hint, wrap_with: { class: 'form-text' }
+    b.use :input, class: "block w-full rounded-md border border-gray-300 bg-white px-2.5 pt-6 pb-2 text-base text-gray-900 placeholder-transparent shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-600 peer"
+    b.use :label, class: "absolute left-3 top-2 z-10 origin-[0] -translate-y-2 scale-75 transform px-1 text-gray-500 duration-300 peer-placeholder-shown:translate-y-2 peer-placeholder-shown:scale-100 peer-focus:-translate-y-2 peer-focus:scale-75"
+    b.use :full_error, wrap_with: { class: "mt-1 text-sm text-red-600" }
+    b.use :hint, wrap_with: { class: "mt-2 text-sm text-gray-500" }
   end
 
-  # custom multi select
-  config.wrappers :floating_labels_select, class: 'form-floating mb-3' do |b|
+  config.wrappers :floating_labels_select, class: "relative mb-4" do |b|
     b.use :html5
     b.optional :readonly
-    b.use :input, class: 'form-select', error_class: 'is-invalid', valid_class: 'is-valid'
-    b.use :label
-    b.use :full_error, wrap_with: { class: 'invalid-feedback' }
-    b.use :hint, wrap_with: { class: 'form-text' }
+    b.use :input, class: "block w-full rounded-md border border-gray-300 bg-white px-2.5 pt-6 pb-2 text-base text-gray-900 placeholder-transparent shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-600 peer"
+    b.use :label, class: "absolute left-3 top-2 z-10 origin-[0] -translate-y-2 scale-75 transform px-1 text-gray-500 duration-300 peer-placeholder-shown:translate-y-2 peer-placeholder-shown:scale-100 peer-focus:-translate-y-2 peer-focus:scale-75"
+    b.use :full_error, wrap_with: { class: "mt-1 text-sm text-red-600" }
+    b.use :hint, wrap_with: { class: "mt-2 text-sm text-gray-500" }
   end
 
-
-  # The default wrapper to be used by the FormBuilder.
   config.default_wrapper = :vertical_form
 
-  # Custom wrappers for input types. This should be a hash containing an input
-  # type as key and the wrapper that will be used for all inputs with specified type.
   config.wrapper_mappings = {
     boolean:       :vertical_boolean,
     check_boxes:   :vertical_collection,

@@ -6,6 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
@@ -15,3 +16,5 @@
     <%= yield %>
   </body>
 </html>
+<body> <body class="<%= "#{controller_name}-#{action_name}" %>">
+<div class="bg-[url(/img/mountains.jpg)] bg-cover bg-center"></div>

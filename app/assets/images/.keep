@@ -1,0 +1,2 @@
+app/assets/images/mountains.jpg
+<div class="bg-[url(/img/mountains.jpg)] bg-cover bg-center"></div>
