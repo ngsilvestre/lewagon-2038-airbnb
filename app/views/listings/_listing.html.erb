@@ -10,4 +10,7 @@
   <%= listing.num_guests %>
   <%= listing.description %>
   <%= listing.owner_id %>
+  <% listing.photos.each do |photo| %>
+    <%= image_tag url_for(photo), width: 300, height:300 %>
+  <% end %>
 </div>
