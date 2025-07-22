@@ -5,6 +5,12 @@ class BookingsController < ApplicationController
     redirect_to dashboard_listings_path
   end
 
+  def destroy
+    @booking = Booking.find(params[:id])
+    @booking.destroy
+    redirect_to dashboard_bookings_path, status: :see_other
+  end
+
   private
 
   def booking_params

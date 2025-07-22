@@ -10,5 +10,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   get "dashboard/listings", to: "dashboard#listings", as: :dashboard_listings
+  get "dashboard/bookings", to: "dashboard#bookings", as: :dashboard_bookings
   patch "bookings/:id", to: "bookings#update", as: :booking
+  delete "bookings/:id", to: "bookings#destroy"
 end
