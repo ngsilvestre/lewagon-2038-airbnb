@@ -1,9 +1,9 @@
 class DashboardController < ApplicationController
   def listings
-    @user_listings = Listing.where(owner_id: current_user.id)
+    @user_listings = Listing.where(owner: current_user)
   end
 
   def bookings
-    @user_bookings = Booking.where(user_id: current_user.id)
+    @user_bookings = Booking.where(user: current_user)
   end
 end
