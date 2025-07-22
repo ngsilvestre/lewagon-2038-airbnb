@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  get "dashboard/listings", to: "dashboard#listings"
+  get "dashboard/listings", to: "dashboard#listings", as: :dashboard_listings
+  patch "bookings/:id", to: "bookings#update", as: :booking
 end

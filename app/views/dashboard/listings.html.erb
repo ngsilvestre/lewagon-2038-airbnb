@@ -9,7 +9,10 @@
     <div>
       <p>Booking from <%= booking.user.email %></p>
       <p>Dates: <%= booking.start_date %> to <%= booking.end_date %></p>
-      <p>Confirmed?: <%= booking.status_confirmed %></p>
+      <% if booking.status_confirmed %> <p>Confirmed Booking!</p>
+      <% else %>
+        <%= link_to "Confirm the booking", booking_path(booking, booking: { status_confirmed: true }), data: {turbo_method: :patch} %>
+      <% end %>
     </div>
   <% end %>
 <% end %>
