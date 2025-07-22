@@ -1,0 +1,22 @@
+<h1>Your Bookings</h1>
+
+<% @user_bookings.each do |booking| %>
+  <p> render <%= booking %> patial
+  <br>
+  &lt;Temporary&gt;
+  <br>
+  Dates: <%= booking.start_date %> to <%= booking.end_date %>
+  <br>
+  Listing: <%= booking.listing.location %>
+  <br>
+  Owner: <%= booking.listing.owner.email %>
+  <br>
+  Description: <%= booking.listing.description %>
+  <br>
+  <%= link_to "Cancel the booking",
+    booking_path(booking),
+    data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+  <br>
+  <br>
+  </p>
+<% end %>
