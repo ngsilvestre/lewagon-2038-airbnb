@@ -1,3 +1,10 @@
-<h1>Edit</h1>
+<p style="color: green"><%= notice %></p>
 
-<%= render "form", listing: @listing %>
+<%= render @listing %>
+
+<div>
+  <%= link_to "Edit this listing", edit_listing_path(@listing) %> |
+  <%= link_to "Back to listings", listings_path %>
+
+  <%= button_to "Destroy this listing", @listing, method: :delete %>
+</div>

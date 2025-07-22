@@ -1,17 +1,18 @@
+<p style="color: green"><%= notice %></p>
 
-<%#= link_to "Add Listing" new_listing_path  %>
+<h1>Listings</h1>
 
-<div class="container mx-auto">
-  <div class="grid grid-cols-3 gap-4">
-    <% @listings.each do |listing| %>
-  <%= link_to(listing_path(listing)) do %>
-    <div>
-      <h2><%= listing.location %></h2>
-      <p><%= listing.num_guests %> persons</p>
-      <p><%= number_to_currency(listing.price, unit: "$") %>/day</p>
-    </div>
+<div id="listings">
+  <form action="">
+    <input type="text" name="query">
+    <button type="submit">Search</button>
+  </form>
+  <% @listings.each do |listing| %>
+    <%= render listing %>
+    <p>
+      <%= link_to "Show this listing", listing %>
+    </p>
   <% end %>
-<% end %>
-
-  </div>
 </div>
+
+<%= link_to "New listing", new_listing_path %>

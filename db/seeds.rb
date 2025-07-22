@@ -2,22 +2,22 @@
 # User.destroy_all
 norman = User.new(email: "norman@gmail.com", password: "123456")
 norman.save
-norman_listing = Listing.new(location: "Southbank", price: 50, num_guests: 4, description:"Cozy Apartment", owner_id: norman.id)
+norman_listing = Listing.new(location: "Southbank", price: 50, num_guests: 4, description:"Cozy Apartment", owner: norman)
 norman_listing.save
 
 quinn = User.new(email: "quinn@gmail.com", password: "123456")
 quinn.save
-quinn_listing = Listing.new(location: "Waterloo", price: 100, num_guests: 2, description:"A unique inner city apartment", owner_id: quinn.id)
+quinn_listing = Listing.new(location: "Waterloo", price: 100, num_guests: 2, description:"A unique inner city apartment", owner: quinn)
 quinn_listing.save
 
 mark = User.new(email: "mark@gmail.com", password: "123456")
 mark.save
-mark_listing = Listing.new(location: "Hobart", price: 80, num_guests: 2, description:"Relaxing picturesque abode", owner_id: mark.id)
+mark_listing = Listing.new(location: "Hobart", price: 80, num_guests: 2, description:"Relaxing picturesque abode", owner: mark)
 mark_listing.save
 
 dom = User.new(email: "dominique@gmail.com", password: "123456")
 dom.save
-dom_listing = Listing.new(location: "Windsor", price: 90, num_guests: 3, description:"Fancy place", owner_id: dom.id)
+dom_listing = Listing.new(location: "Windsor", price: 90, num_guests: 3, description:"Fancy place", owner: dom)
 dom_listing.save
 
 # Norman books Quinns listing

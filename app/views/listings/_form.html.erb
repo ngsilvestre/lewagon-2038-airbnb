@@ -1,21 +1,17 @@
-<%= simple_form_for(listing) do | f | %>
-  <% if listing.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(listing.errors.count, "error") %> prohibited this listing from being saved:</h2>
 
-      <ul>
-        <% listing.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= simple_form_for(@listing) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
+   <div class="form-inputs">
+    <%= f.input :location %>
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+    <%= f.input :price, as: :float, input_html: { step: 0.01, min: 0 } %>
+    <%= f.input :num_guests, as: :integer, input_html: { min: 1 } %>
+    <%= f.input :description, as: :text %>
+  </div>
 
-  <%= f.association :owner, label_method: :email %>
-  <%= f.input :location %>
-  <%= f.input :price, as: :decimal, step: 0.01 %>
-  <%= f.input :num_guests, label: "Number of Guests" %>
-  <%= f.input :description, as: :text %>
-  <%= f.button :submit %>
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
 <% end %>
