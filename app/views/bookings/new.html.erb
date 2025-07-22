@@ -1,30 +1,16 @@
 <% content_for :title, "Bookings" %>
 
-<h1>Create a new booking!</h1>
-
-<%= render "form", monument: @booking %>
-
 <br>
 
 <div>
-  <%= link_to "Back to listings", ... %>
+  <%= link_to "Back to listings", root_path %>
 </div>
 <h1>New Booking</h1>
 
-<%= form_with(model: [@listing, @booking]) do |f| %>
+<%= simple_form_for [@listing, @booking] do |f| %>
   <div>
-    <%= f.label :start_date %><br>
-    <%= f.date_field :start_date %>
-  </div>
-
-  <div>
-    <%= f.label :end_date %><br>
-    <%= f.date_field :end_date %>
-  </div>
-
-  <div>
-    <%= f.label :guests %><br>
-    <%= f.number_field :guests, min: 1 %>
+    <%= f.input :start_date %>
+    <%= f.input :end_date %>
   </div>
 
   <div>
