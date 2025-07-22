@@ -21,19 +21,19 @@ dom_listing = Listing.new(location: "Windsor", price: 90, num_guests: 3, descrip
 dom_listing.save
 
 # Norman books Quinns listing
-norman_booking = Booking.new(start_date: Date.new(2025, 7, 22), end_date: Date.new(2025, 7, 23), status_confirmed: true, listing: quinn_listing, user: norman)
+norman_booking = Booking.new(start_date: Date.new(2025, 7, 22), end_date: Date.new(2025, 7, 23), listing: quinn_listing, user: norman)
 norman_booking.save
 
 # Quinn books Marks Listing
-quinn_booking = Booking.new(start_date: Date.new(2025, 7, 24), end_date: Date.new(2025, 7, 25), status_confirmed: true, listing: mark_listing, user: quinn)
+quinn_booking = Booking.new(start_date: Date.new(2025, 7, 24), end_date: Date.new(2025, 7, 25), listing: mark_listing, user: quinn)
 quinn_booking.save
 
 # Mark books Quinns Listing
-mark_booking = Booking.new(start_date: Date.new(2025, 7, 26), end_date: Date.new(2025, 7, 27), status_confirmed: true, listing: quinn_listing, user: mark)
+mark_booking = Booking.new(start_date: Date.new(2025, 7, 26), end_date: Date.new(2025, 7, 27), listing: quinn_listing, user: mark)
 mark_booking.save
 
 # Dom books Quinns Listing
-dom_booking = Booking.new(start_date: Date.new(2025, 7, 27), end_date: Date.new(2025, 7, 28), status_confirmed: true, listing: quinn_listing, user: dom)
+dom_booking = Booking.new(start_date: Date.new(2025, 7, 27), end_date: Date.new(2025, 7, 28), listing: quinn_listing, user: dom)
 dom_booking.save
 
 # USER IDS

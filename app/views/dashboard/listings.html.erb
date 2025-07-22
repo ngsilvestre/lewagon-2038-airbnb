@@ -1,17 +1,30 @@
 <h1>Your listings</h1>
 
+<%= link_to "Create new listing", new_listing_path %>
+
 <% @user_listings.each do |listing| %>
-  <p> render <%= listing %> patial
-  <br>
-  <br>
+  <p><br></p>
+  <%= render listing %>
+  <p>
+    <%= link_to "Show this listing", listing %>
+    <br>
+    <br>
   </p>
   <% listing.bookings.each do |booking| %>
     <div>
       <p>Booking from <%= booking.user.email %></p>
       <p>Dates: <%= booking.start_date %> to <%= booking.end_date %></p>
-      <% if booking.status_confirmed %> <p>Confirmed Booking!</p>
+      <% if booking.confirmed? %> <p>Confirmed Booking!</p>
+      <% elsif booking.denied? %> <p>Denied Booking!</p>
       <% else %>
-        <%= link_to "Confirm the booking", booking_path(booking, booking: { status_confirmed: true }), data: {turbo_method: :patch} %>
+        <%= link_to "Confirm the booking",
+          booking_path(booking, booking: { status: :confirmed }),
+          data: {turbo_method: :patch},
+          class: "block" %>
+        <%= link_to "Deny the booking",
+          booking_path(booking, booking: { status: :denied}),
+          data: {turbo_method: :patch},
+          class: "block" %>
       <% end %>
     </div>
   <% end %>
