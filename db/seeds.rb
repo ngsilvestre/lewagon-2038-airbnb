@@ -1,5 +1,8 @@
-# USERS
-# User.destroy_all
+# RESET DATA
+User.destroy_all
+Listing.destroy_all
+Booking.destroy_all
+
 norman = User.new(email: "norman@gmail.com", password: "123456")
 norman.save
 norman_listing = Listing.new(location: "Southbank", price: 50, num_guests: 4, description:"Cozy Apartment", owner: norman)
@@ -7,7 +10,7 @@ norman_listing.save
 
 quinn = User.new(email: "quinn@gmail.com", password: "123456")
 quinn.save
-quinn_listing = Listing.new(location: "Waterloo", price: 100, num_guests: 2, description:"A unique inner city apartment", owner: quinn)
+quinn_listing = Listing.new(location: "Waterloo", price: 100, num_guests: 2, description: "A unique inner city apartment", owner: quinn)
 quinn_listing.save
 
 mark = User.new(email: "mark@gmail.com", password: "123456")
