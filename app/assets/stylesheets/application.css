@@ -1,0 +1,5 @@
+/* Login page only */
+.sessions-new {
+  background: url('/assets/mountains.jpg') no-repeat center center;
+  background-size: cover;
+}
