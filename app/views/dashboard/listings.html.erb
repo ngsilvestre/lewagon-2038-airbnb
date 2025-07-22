@@ -1,0 +1,18 @@
+<h1>Your listings</h1>
+
+<% @user_listings.each do |listing| %>
+  <p> render <%= listing %> patial
+  <br>
+  <br>
+  </p>
+  <% listing.bookings.each do |booking| %>
+    <div>
+      <p>Booking from <%= booking.user.email %></p>
+      <p>Dates: <%= booking.start_date %> to <%= booking.end_date %></p>
+      <% if booking.status_confirmed %> <p>Confirmed Booking!</p>
+      <% else %>
+        <%= link_to "Confirm the booking", booking_path(booking, booking: { status_confirmed: true }), data: {turbo_method: :patch} %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
