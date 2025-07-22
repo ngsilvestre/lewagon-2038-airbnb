@@ -4,10 +4,11 @@
 "description"
 "owner_id" %>
 
-<div id="<%= dom_id listing %>">
-  <%= listing.location %>
-  <%= listing.price %>
-  <%= listing.num_guests %>
-  <%= listing.description %>
-  <%= listing.owner_id %>
+<div id="<%= dom_id listing %>" class="p-4 border border-gray-200 rounded-lg shadow bg-white">
+  <p><%= listing.location %></p>
+  <p><%= listing.price %></p>
+  <p><%= listing.num_guests %> guests</p>
+  <p><%= listing.description %></p>
+  <p>Owner: <%= listing.owner.email %></p>
+  <%= link_to "Show more", listing %>
 </div>

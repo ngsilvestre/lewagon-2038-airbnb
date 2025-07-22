@@ -1,18 +1,17 @@
-<p style="color: green"><%= notice %></p>
+<div class="container mx-auto max-w-3xl p-4">
+  <p style="color: green"><%= notice %></p>
 
-<h1>Listings</h1>
+  <h1 class="text-3xl font-medium">Listings</h1>
 
-<div id="listings">
-  <form action="">
-    <input type="text" name="query">
-    <button type="submit">Search</button>
-  </form>
-  <% @listings.each do |listing| %>
-    <%= render listing %>
-    <p>
-      <%= link_to "Show this listing", listing %>
-    </p>
-  <% end %>
+  <div id="listings">
+    <form action="">
+      <input type="text" name="query">
+      <button type="submit">Search</button>
+    </form>
+    <% @listings.each do |listing| %>
+      <%= render listing %>
+    <% end %>
+  </div>
+
+  <%= link_to "New listing", new_listing_path %>
 </div>
-
-<%= link_to "New listing", new_listing_path %>
