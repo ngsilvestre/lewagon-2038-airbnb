@@ -1,4 +1,5 @@
 class ListingsController < ApplicationController
+
   before_action :set_listings, only: %i[ show edit update destroy ]
   skip_before_action :authenticate_user!, only: %i[index]
   # GET /listings or /listings.json
@@ -70,6 +71,6 @@ class ListingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def listing_params
-      params.require(:listing).permit(:location, :price, :num_guests, :description)
+      params.require(:listing).permit(:location, :price, :num_guests, :description, photos: [])
     end
 end

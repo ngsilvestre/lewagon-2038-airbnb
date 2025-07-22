@@ -1,47 +1,3 @@
-# ActiveRecord::Schema[7.1].define(version: 2025_07_18_041804) do
-#   # These are extensions that must be enabled in order to support this database
-#   enable_extension "plpgsql"
-
-  # create_table "bookings", force: :cascade do |t|
-  #   t.date "start_date"
-  #   t.date "end_date"
-  #   t.boolean "status_confirmed"
-  #   t.bigint "listing_id", null: false
-  #   t.bigint "user_id", null: false
-  #   t.datetime "created_at", null: false
-  #   t.datetime "updated_at", null: false
-  #   t.index ["listing_id"], name: "index_bookings_on_listing_id"
-  #   t.index ["user_id"], name: "index_bookings_on_user_id"
-  # end
-
-  # create_table "listings", force: :cascade do |t|
-  #   t.string "location"
-  #   t.float "price"
-  #   t.integer "num_guests"
-  #   t.text "description"
-  #   t.datetime "created_at", null: false
-  #   t.datetime "updated_at", null: false
-  #   t.bigint "owner_id", null: false
-  #   t.index ["owner_id"], name: "index_listings_on_owner_id"
-  # end
-
-  # create_table "users", force: :cascade do |t|
-  #   t.string "email", default: "", null: false
-  #   t.string "encrypted_password", default: "", null: false
-  #   t.string "reset_password_token"
-  #   t.datetime "reset_password_sent_at"
-  #   t.datetime "remember_created_at"
-  #   t.datetime "created_at", null: false
-  #   t.datetime "updated_at", null: false
-  #   t.index ["email"], name: "index_users_on_email", unique: true
-  #   t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  # end
-
-#   add_foreign_key "bookings", "listings"
-#   add_foreign_key "bookings", "users"
-#   add_foreign_key "listings", "users", column: "owner_id"
-# end
-
 # USERS
 # User.destroy_all
 norman = User.new(email: "norman@gmail.com", password: "123456")
@@ -95,4 +51,4 @@ dom_booking.save
 # Booking.create!(start_date: Date.new(2025, 7, 22), end_date: Date.new(2025, 7, 23), status_confirmed: true, listing_id: 2, user_id: 9)
 #Booking.create!(start_date: Date.new(2025, 7, 24), end_date: Date.new(2025, 7, 25), status_confirmed: true, listing_id: 2, user_id: 10)
 #Booking.create!(start_date: Date.new(2025, 7, 26), end_date: Date.new(2025, 7, 27), status_confirmed: true, listing_id: 2, user_id: 11)
-#Booking.create!(start_date: Date.new(2025, 7, 26), end_date: Date.new(2025, 7, 27), status_confirmed: true, listing_id: 1, user_id: 10)
+#gBooking.create!(start_date: Date.new(2025, 7, 26), end_date: Date.new(2025, 7, 27), status_confirmed: true, listing_id: 1, user_id: 10)
