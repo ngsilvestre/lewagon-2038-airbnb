@@ -1,0 +1,16 @@
+
+<%= simple_form_for(@listing) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+   <div class="form-inputs">
+    <%= f.input :location %>
+    <%= f.input :price, as: :float, input_html: { step: 0.01, min: 0 } %>
+    <%= f.input :num_guests, as: :integer, input_html: { min: 1 } %>
+    <%= f.input :description, as: :text %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
