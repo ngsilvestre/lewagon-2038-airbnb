@@ -76,3 +76,4 @@ end
 gem "devise"
 
 gem "ostruct" # For silencing warnings in the console
+gem "cloudinary"
