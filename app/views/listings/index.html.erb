@@ -1,5 +1,18 @@
-<h1>Homepage</h1>
+<p style="color: green"><%= notice %></p>
 
-<p>This is a paragraph.</p>
+<h1>Listings</h1>
 
-<p>testing another push</p>
+<div id="listings">
+  <form action="">
+    <input type="text" name="query">
+    <button type="submit">Search</button>
+  </form>
+  <% @listings.each do |listing| %>
+    <%= render listing %>
+    <p>
+      <%= link_to "Show this listing", listing %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New listing", new_listing_path %>
