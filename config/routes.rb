@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  get "dashboard/listings", to: "dashboard#listings", as: :dashboard_listing
+  get "dashboard/listings", to: "dashboard#listings", as: :dashboard_listings
   get "dashboard/bookings", to: "dashboard#bookings", as: :dashboard_bookings
   patch "bookings/:id", to: "bookings#update", as: :booking
   delete "bookings/:id", to: "bookings#destroy"
