@@ -1,16 +1,11 @@
-<%# listing schema "location"
-"price"
-"num_guests"
-"description"
-"owner_id" %>
-
 <div id="<%= dom_id listing %>">
-  <%= listing.location %>
-  <%= listing.price %>
-  <%= listing.num_guests %>
-  <%= listing.description %>
-  <%= listing.owner_id %>
-  <% listing.photos.each do |photo| %>
-    <%= image_tag url_for(photo), width: 300, height:300 %>
+  <%= link_to listing_path(listing), class: "space-y-2 block" do %>
+    <div class="w-full aspect-square overflow-x-auto bg-white border border-gray-200 rounded-lg shadow">
+      <%= image_tag "https://picsum.photos/seed/#{listing.location.parameterize}/300/300", class: "w-full h-full object-cover rounded" %>
+    </div>
+    <div class="space-y-0.5">
+      <p class="font-medium"><%= listing.location %></p>
+      <p class="text-sm text-gray-500">$<%= format('%.2f', listing.price) %></p>
+    </div>
   <% end %>
 </div>

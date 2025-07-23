@@ -1,4 +1,9 @@
 class BookingsController < ApplicationController
+  # GET /listings/:listing_id/bookings
+  def index
+    @listing = Listing.find(params[:listing_id]) if params[:listing_id]
+  end
+
   def new
     @booking = Booking.new
     @listing = Listing.find(params[:listing_id]) if params[:listing_id]
