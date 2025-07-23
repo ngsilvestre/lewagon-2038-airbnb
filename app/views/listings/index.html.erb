@@ -1,36 +1,26 @@
-<p style="color: green"><%= notice %></p>
-<div id="listings">
-  <%# <form action="">
-    <input type="text" name="query">
-    <button type="submit">Search</button>
-  </form> %>
+<div class="container mx-auto max-w-5xl p-4">
+  <p style="color: green"><%= notice %></p>
 
-    <div class="bg-white py-24 sm:py-32">
-      <div class="mx-auto max-w-7xl px-6 lg:px-8">
-        <div class="mx-auto max-w-2xl lg:mx-0">
-          <h2 class="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">View Listings</h2>
-          <%= form_with url: listings_path, method: :get, class: "d-flex" do %>
-            <%= text_field_tag :query,
-                  params[:query],
-                  class: "form-control",
-                  placeholder: "Search for places"
-              %>
-            <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
-          <% end %>
-        </div>
-          <ul role="list" class="mx-auto mt-20 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-            <% @listings.each do |listing| %>
-              <%#= link_to listing_path(listing) do %>
-                <%= render listing %>
-              <%# end %>
-            <% end %>
-          </ul>
-        </div>
+  <h1 class="text-3xl font-medium">Listings</h1>
+
+  <div id="listings">
+    <%= form_with url: listings_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Search for places"
+        %>
+      <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+    <% end %>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <% @listings.each do |listing| %>
+        <%= render listing %>
+      <% end %>
     </div>
+  </div>
+
+  <%= link_to "New listing", new_listing_path %>
 </div>
-
-<%= link_to "New listing", new_listing_path %>
-
 
 <%# MAPS CONTAINER  %>
 <div style="width: 100%; height: 600px;"
