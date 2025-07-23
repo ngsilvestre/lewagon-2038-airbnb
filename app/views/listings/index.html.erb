@@ -3,10 +3,18 @@
 <h1>Listings</h1>
 
 <div id="listings">
-  <form action="">
+  <%# <form action="">
     <input type="text" name="query">
     <button type="submit">Search</button>
-  </form>
+  </form> %>
+  <%= form_with url: listings_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Search for places"
+        %>
+      <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+    <% end %>
   <% @listings.each do |listing| %>
     <%= render listing %>
     <p>
