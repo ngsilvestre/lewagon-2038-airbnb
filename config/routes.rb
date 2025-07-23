@@ -16,5 +16,5 @@ Rails.application.routes.draw do
       delete 'delete_photo/:photo_id', to: 'listings#delete_photo', as: 'delete_photo'
     end
   end
-  resources :bookings, only: %i(update destroy)
+  resources :bookings, only: %i(update show destroy)
 end

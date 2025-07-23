@@ -1,0 +1,9 @@
+<h1>Booking Confirmation</h1>
+
+<p><%= @booking.listing.location %></p>
+<p><%= pluralize(@booking.listing.num_guests, "guest") %> allowed</p>
+<p><strong>Start Date:</strong> <%= @booking.start_date %></p>
+<p><strong>End Date:</strong> <%= @booking.end_date %></p>
+<hr>
+
+<%= link_to "See All Your Bookings", dashboard_bookings_path %>

@@ -1,10 +1,11 @@
-<% content_for :title, "Bookings" %>
-
-<br>
+<% content_for :title do %>
+  Bookings
+<% end %>
 
 <div>
-  <%= link_to "Back to listings", root_path %>
+  <%= link_to "Back to listings", listing_path(@listing) %>
 </div>
+
 <h1>New Booking</h1>
 
 <%= simple_form_for [@listing, @booking] do |f| %>
@@ -12,7 +13,6 @@
     <%= f.input :start_date %>
     <%= f.input :end_date %>
   </div>
-
   <div>
     <%= f.submit "Book Now" %>
   </div>
