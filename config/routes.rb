@@ -11,10 +11,10 @@ Rails.application.routes.draw do
   get "dashboard/listings", to: "dashboard#listings", as: :dashboard_listings
   get "dashboard/bookings", to: "dashboard#bookings", as: :dashboard_bookings
   resources :listings do
-    resources :bookings, only: %i(new create)
+    resources :bookings, only: %i(create index)
     member do
       delete 'delete_photo/:photo_id', to: 'listings#delete_photo', as: 'delete_photo'
     end
   end
-  resources :bookings, only: %i(update destroy)
+  resources :bookings, only: %i(update show destroy)
 end

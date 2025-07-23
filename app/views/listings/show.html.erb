@@ -1,10 +1,34 @@
-<p style="color: green"><%= notice %></p>
+<p class="text-green-600 mb-4"><%= notice %></p>
 
-<%= render @listing %>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+  <!-- Left Column: Listing Details -->
+  <div class="lg:col-span-2">
+    <!-- Listing Partial -->
+    <%= render @listing %>
 
-<div>
-  <%= link_to "Edit this listing", edit_listing_path(@listing) %> |
-  <%= link_to "Back to listings", listings_path %>
+    <div class="flex items-center space-x-4 mt-4">
+      <%= link_to "Edit this listing", edit_listing_path(@listing),
+        class: "text-blue-600 hover:underline" %>
+      |
+      <%= link_to "Back to listings", listings_path,
+        class: "text-blue-600 hover:underline" %>
 
-  <%= button_to "Destroy this listing", @listing, method: :delete %>
+      <%= button_to "Destroy this listing", @listing,
+        method: :delete,
+        class: "text-red-600 hover:underline ml-4" %>
+    </div>
+
+    <div class="mt-6">
+      <h1 class="text-3xl font-bold mb-2"><%= @listing.title %></h1>
+      <p class="text-gray-700 text-lg leading-relaxed"><%= @listing.description %></p>
+    </div>
+  </div>
+
+  <!-- Right Column: Booking Form -->
+  <div class="lg:col-span-1">
+    <div class="border rounded-xl shadow p-6 bg-white">
+      <h2 class="text-2xl font-semibold mb-4 text-gray-800">Book this listing</h2>
+      <%= render "bookings/form", listing: @listing, booking: @booking %>
+    </div>
+  </div>
 </div>
