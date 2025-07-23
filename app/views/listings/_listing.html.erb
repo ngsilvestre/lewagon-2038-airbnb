@@ -3,11 +3,7 @@
 "num_guests"
 "description"
 "owner_id" %>
-
 <div id="<%= dom_id listing %>" class="p-4 border border-black-400 rounded-lg shadow bg-white">
-
-
-
   <p class="text-2xl font-bold"><%= listing.location %></p>
   <p><%= listing.price %></p>
 
@@ -16,6 +12,10 @@
   <p><%= listing.description %></p>
 
   <p>Owner: <%= listing.owner.email %></p>
+
+  <% listing.photos.each do |photo| %>
+    <%= image_tag url_for(photo), width: 300, height:300 %>
+  <% end %>
 
   <%= link_to "Show more", listing %>
 </div>

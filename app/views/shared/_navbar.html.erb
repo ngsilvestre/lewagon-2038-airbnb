@@ -1,15 +1,4 @@
 
-
-
-  <%# Auth buttons %>
-  <div>
-    <% if current_user %>
-      <%= link_to "Logout", destroy_user_session_path, data: {turbo_method: :delete} %>
-    <% else %>
-
-    <% end %>
-  </div>
-</nav>
 <nav class="bg-gray-800 text-white p-4 flex items-center justify-between">
   <div class="flex items-center">
     <%= link_to "OURBNB", root_path, class: "text-2xl font-bold" %>
@@ -29,4 +18,3 @@
     <p class="text-white">Your one-stop solution for booking unique stays.</p>
   </div>
 </nav>
-<body>

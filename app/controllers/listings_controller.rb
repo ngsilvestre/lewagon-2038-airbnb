@@ -1,7 +1,7 @@
 class ListingsController < ApplicationController
 
   before_action :set_listings, only: %i[ show edit update destroy ]
-  skip_before_action :authenticate_user!, only: %i[index]
+  skip_before_action :authenticate_user!, only: %i[index show]
   # GET /listings or /listings.json
   def index
     @query = params[:query]
@@ -55,12 +55,19 @@ class ListingsController < ApplicationController
 
   # DELETE /listings/1 or /listings/1.json
   def destroy
-    @listingzzz.destroy!
+    @listing.destroy!
 
     respond_to do |format|
       format.html { redirect_to listings_path, status: :see_other, notice: "Listingzzz was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def delete_photo
+    @listing = Listing.find(params[:id])
+    photo = @listing.photos.find(params[:photo_id])
+    photo.purge # or purge_later if you want it done in the background
+    redirect_to @listing, notice: 'Photo was successfully deleted.'
   end
 
   private
@@ -71,6 +78,8 @@ class ListingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def listing_params
-      params.require(:listing).permit(:location, :price, :num_guests, :description, photos: [])
+      params.require(:listing).permit(:location, :price, :num_guests, :owner, :description, photos: [])
     end
+
+
 end
