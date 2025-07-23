@@ -1,0 +1,16 @@
+<div>
+  <%= link_to "Back to listings", listing_path(@listing) %>
+</div>
+
+<%= simple_form_for [@listing, @booking] do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :start_date, as: :date %>
+    <%= f.input :end_date, as: :date %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Book Now" %>
+  </div>
+<% end %>
