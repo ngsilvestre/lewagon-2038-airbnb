@@ -1,4 +1,4 @@
-<div class="container mx-auto max-w-3xl p-4">
+<div class="container mx-auto max-w-5xl p-4">
   <p style="color: green"><%= notice %></p>
 
   <h1 class="text-3xl font-medium">Listings</h1>
@@ -8,9 +8,11 @@
       <input type="text" name="query">
       <button type="submit">Search</button>
     </form>
-    <% @listings.each do |listing| %>
-      <%= render listing %>
-    <% end %>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <% @listings.each do |listing| %>
+        <%= render listing %>
+      <% end %>
+    </div>
   </div>
 
   <%= link_to "New listing", new_listing_path %>

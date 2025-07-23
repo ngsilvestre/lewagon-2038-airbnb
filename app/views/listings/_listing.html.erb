@@ -1,37 +1,11 @@
-<div id="<%= dom_id listing %>" class="p-4 border border-black-400 rounded-lg shadow bg-white pb-4 mb-4 py-10">
-  <div class="flex justify-between items-start gap-4">
-
-    <!-- LEFT: Listing info -->
-    <div class="flex-1">
-      <p class="text-2xl font-bold"><%= listing.location %></p>
-
-      <p><%= listing.price %></p>
-      <p><%= listing.num_guests %> guests</p>
-      <p><%= listing.description %></p>
-      <p>Owner: <%= listing.owner.email %></p>
-      <%= link_to "Show more", listing %>
-    </div>
-    <div class="flex flex-col items-center justify-center gap-4">
-      <div class="text-gray-500 text-sm">Listing ID: <%= listing.id %></div>
-      <div class="text-gray-500 text-sm">Created at: <%= listing.created_at.strftime("%B %d, %Y") %></div>
-
-<!-- RIGHT: Unique photo -->
-    <div class="w-48 h-48 overflow-x-auto">
+<div id="<%= dom_id listing %>">
+  <%= link_to listing_path(listing), class: "space-y-2 block" do %>
+    <div class="w-full aspect-square overflow-x-auto bg-white border border-gray-200 rounded-lg shadow">
       <%= image_tag "https://picsum.photos/seed/#{listing.location.parameterize}/300/300", class: "w-full h-full object-cover rounded" %>
     </div>
+    <div class="space-y-0.5">
+      <p class="font-medium"><%= listing.location %></p>
+      <p class="text-sm text-gray-500">$<%= format('%.2f', listing.price) %></p>
     </div>
-
-
-
-  </div>
+  <% end %>
 </div>
-
-
-
-
-
-<%# listing schema "location"
-"price"
-"num_guests"
-"description"
-"owner_id" %>
