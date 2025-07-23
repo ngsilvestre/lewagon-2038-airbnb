@@ -18,5 +18,5 @@ Rails.application.routes.draw do
   resources :listings do
     resources :bookings, only: %i(new create)
   end
-  resources :bookings, only: %i(update destroy)
+  resources :bookings, only: %i(update show destroy)
 end

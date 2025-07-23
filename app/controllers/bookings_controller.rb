@@ -11,11 +11,16 @@ class BookingsController < ApplicationController
     @booking.listing = Listing.find(params[:listing_id])
 
     if @booking.save
-      redirect_to @booking.listing, notice: "Booking created successfully!"
+      redirect_to @booking, notice: "Booking successfully created!"
+
     else
       flash.now[:alert] = "There were errors with your booking."
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def show
+    @booking = Booking.find(params[:id])
   end
 
   def update
