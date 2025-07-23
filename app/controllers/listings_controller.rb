@@ -4,11 +4,10 @@ class ListingsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
   # GET /listings or /listings.json
   def index
-    @query = params[:query]
-    @listings = if @query.present?
-      Listing.where("location ILIKE ?", "%#{@query}%")
-    else
-      Listing.all
+    # @query = params[:query]
+    @listings = Listing.all
+    if params[:query].present?
+      @listings = @listings.global_search(params[:query])
     end
   end
 
@@ -78,7 +77,7 @@ class ListingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def listing_params
-      params.require(:listing).permit(:location, :price, :num_guests, :owner, :description, photos: [])
+      params.require(:listing).permit(:title, :location, :price, :num_guests, :owner, :description, photos: [])
     end
 
 
