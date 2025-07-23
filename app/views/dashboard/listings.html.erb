@@ -5,13 +5,14 @@
 <% @user_listings.each do |listing| %>
   <p><br></p>
   <%= render listing %>
-  <p>
-    <%= link_to "Show this listing", listing %>
-    <br>
-    <br>
-  </p>
+  <%= link_to "Show this listing", listing %> | <%= link_to "Edit this listing", edit_listing_path(listing) %>
+  <%= link_to "Delete the listing",
+    listing_path(listing),
+    data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
+    class: "block" %>
+
   <% listing.bookings.each do |booking| %>
-    <div>
+    <div class="py-4">
       <p>Booking from <%= booking.user.email %></p>
       <p>Dates: <%= booking.start_date %> to <%= booking.end_date %></p>
       <% if booking.confirmed? %> <p>Confirmed Booking!</p>
