@@ -1,21 +1,37 @@
+<div id="<%= dom_id listing %>" class="p-4 border border-black-400 rounded-lg shadow bg-white pb-4 mb-4 py-10">
+  <div class="flex justify-between items-start gap-4">
+
+    <!-- LEFT: Listing info -->
+    <div class="flex-1">
+      <p class="text-2xl font-bold"><%= listing.location %></p>
+
+      <p><%= listing.price %></p>
+      <p><%= listing.num_guests %> guests</p>
+      <p><%= listing.description %></p>
+      <p>Owner: <%= listing.owner.email %></p>
+      <%= link_to "Show more", listing %>
+    </div>
+    <div class="flex flex-col items-center justify-center gap-4">
+      <div class="text-gray-500 text-sm">Listing ID: <%= listing.id %></div>
+      <div class="text-gray-500 text-sm">Created at: <%= listing.created_at.strftime("%B %d, %Y") %></div>
+
+<!-- RIGHT: Unique photo -->
+    <div class="w-48 h-48 overflow-x-auto">
+      <%= image_tag "https://picsum.photos/seed/#{listing.location.parameterize}/300/300", class: "w-full h-full object-cover rounded" %>
+    </div>
+    </div>
+
+
+
+  </div>
+</div>
+
+
+
+
+
 <%# listing schema "location"
 "price"
 "num_guests"
 "description"
 "owner_id" %>
-<div id="<%= dom_id listing %>" class="p-4 border border-black-400 rounded-lg shadow bg-white">
-  <p class="text-2xl font-bold"><%= listing.location %></p>
-  <p><%= listing.price %></p>
-
-  <p><%= listing.num_guests %> guests</p>
-
-  <p><%= listing.description %></p>
-
-  <p>Owner: <%= listing.owner.email %></p>
-
-  <% listing.photos.each do |photo| %>
-    <%= image_tag url_for(photo), width: 300, height:300 %>
-  <% end %>
-
-  <%= link_to "Show more", listing %>
-</div>
