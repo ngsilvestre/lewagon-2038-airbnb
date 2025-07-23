@@ -4,32 +4,32 @@ Listing.destroy_all
 Booking.destroy_all
 
 norman_image_paths = [
-  Rails.root.join("db/seeds_images/norman/photo1.jpeg"),
-  Rails.root.join("db/seeds_images/norman/photo2.jpeg"),
-  Rails.root.join("db/seeds_images/norman/photo3.jpeg")
+  Rails.root.join("db/seeds_images/norman/photo1.webp"),
+  Rails.root.join("db/seeds_images/norman/photo2.webp"),
+  Rails.root.join("db/seeds_images/norman/photo3.webp")
 ]
 quinn_image_paths = [
-  Rails.root.join("db/seeds_images/quinn/photo1.jpeg"),
-  Rails.root.join("db/seeds_images/quinn/photo2.jpeg"),
-  Rails.root.join("db/seeds_images/quinn/photo3.jpeg")
+  Rails.root.join("db/seeds_images/quinn/photo1.webp"),
+  Rails.root.join("db/seeds_images/quinn/photo2.webp"),
+  Rails.root.join("db/seeds_images/quinn/photo3.webp")
 ]
 
 mark_image_paths = [
-  Rails.root.join("db/seeds_images/mark/photo1.jpeg"),
-  Rails.root.join("db/seeds_images/mark/photo2.jpeg"),
-  Rails.root.join("db/seeds_images/mark/photo3.jpeg")
+  Rails.root.join("db/seeds_images/mark/photo1.webp"),
+  Rails.root.join("db/seeds_images/mark/photo2.webp"),
+  Rails.root.join("db/seeds_images/mark/photo3.webp")
 ]
 
 dominique_image_paths = [
-  Rails.root.join("db/seeds_images/dominique/photo1.jpeg"),
-  Rails.root.join("db/seeds_images/dominique/photo2.jpeg"),
-  Rails.root.join("db/seeds_images/dominique/photo3.jpeg")
+  Rails.root.join("db/seeds_images/dominique/photo1.webp"),
+  Rails.root.join("db/seeds_images/dominique/photo2.webp"),
+  Rails.root.join("db/seeds_images/dominique/photo3.webp")
 ]
 
 george_image_paths = [
-  Rails.root.join("db/seeds_images/george/photo1.jpeg"),
-  Rails.root.join("db/seeds_images/george/photo2.jpeg"),
-  Rails.root.join("db/seeds_images/george/photo3.jpeg")
+  Rails.root.join("db/seeds_images/george/photo1.webp"),
+  Rails.root.join("db/seeds_images/george/photo2.webp"),
+  Rails.root.join("db/seeds_images/george/photo3.webp")
 ]
 
 def file_upload(image_paths)
@@ -45,7 +45,7 @@ end
 norman = User.new(email: "norman@gmail.com", password: "123456")
 norman.save
 norman_listing = Listing.new(
-  title: "Cozy Snowbound Chalet", location: "Zermatt Alps, Valais, Switzerland", price: 50, num_guests: 4, owner: norman,
+  title: "Cozy Snowbound Chalet", location: "Zermatt Alps, Valais, Switzerland", price: 50, num_guests: 4, owner: norman, rating: 4.8,
   description: "Experience winter wonderland in this stylish chalet, just steps from the ski lifts. With underfloor heating, a hot tub on the deck, and champagne sunsets over the Matterhorn, this is alpine luxury at its best."
 )
 norman_listing.photos.attach(file_upload(norman_image_paths))
@@ -54,7 +54,7 @@ norman_listing.save
 quinn = User.new(email: "quinn@gmail.com", password: "123456")
 quinn.save
 quinn_listing = Listing.new(
-  title: "Cozy Cottage in a Greenfield", location: "Havenbrook, Somerset, England", price: 50, num_guests: 4, owner: quinn,
+  title: "Cozy Cottage in a Greenfield", location: "Havenbrook, Somerset, England", price: 50, num_guests: 4, owner: quinn, rating: 5,
   description: "Charming 2‑bedroom cottage surrounded by rolling green fields — perfect for stargazing at night."
 )
 quinn_listing.photos.attach(file_upload(quinn_image_paths))
@@ -63,7 +63,7 @@ quinn_listing.save
 mark = User.new(email: "mark@gmail.com", password: "123456")
 mark.save
 mark_listing = Listing.new(
-  title: "Rustic Cabin Near the River", location: "Riverbend Lodge", price: 50, num_guests: 4, owner: mark,
+  title: "Rustic Cabin Near the River", location: "Riverbend Lodge", price: 50, num_guests: 4, owner: mark, rating: 5,
   description: "Relax by the river in this wooden cabin with a private deck and electric fire pit."
 )
 mark_listing.photos.attach(file_upload(mark_image_paths))
@@ -72,7 +72,7 @@ mark_listing.save
 dominique = User.new(email: "dominique@gmail.com", password: "123456")
 dominique.save
 dominique_listing = Listing.new(
-  title: "Secluded Forest Hideaway", location: "Forest Haven", price: 50, num_guests: 4, owner: dominique,
+  title: "Secluded Forest Hideaway", location: "Forest Haven", price: 50, num_guests: 4, owner: dominique, rating: 5,
   description: "Escape into nature in this modern treehouse nestled amid towering pines."
 )
 dominique_listing.photos.attach(file_upload(dominique_image_paths))
@@ -81,7 +81,7 @@ dominique_listing.save
 george = User.new(email: "george@gmail.com", password: "123456")
 george.save
 george_listing = Listing.new(
-  title: "By the Sea: Oceanfront Villa", location: "Coastal Breeze Villa", price: 70, num_guests: 4, owner: george,
+  title: "By the Sea: Oceanfront Villa", location: "Coastal Breeze Villa", price: 70, num_guests: 4, owner: george, rating: 5,
   description: "Wake up to sunrise views over the ocean; private beach access included."
 )
 george_listing.photos.attach(file_upload(george_image_paths))

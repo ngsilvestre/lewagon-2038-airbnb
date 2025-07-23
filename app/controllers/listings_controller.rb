@@ -4,10 +4,19 @@ class ListingsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
   # GET /listings or /listings.json
   def index
-    # @query = params[:query]
+    # Set to all
     @listings = Listing.all
+    # Check ?query= params
     if params[:query].present?
+      # If present, filter current listing
       @listings = @listings.global_search(params[:query])
+    end
+    # Set Markers
+    @markers = @listings.geocoded.map do |listing|
+      {
+        lat: listing.latitude,
+        lng: listing.longitude
+      }
     end
   end
 
