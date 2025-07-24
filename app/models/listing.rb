@@ -6,7 +6,7 @@ class Listing < ApplicationRecord
   after_validation :geocode, if: :will_save_change_to_location?
   include PgSearch::Model
   pg_search_scope :global_search,
-                  against: [ :location, :description ],
+                  against: [ :location, :title ],
                   using: {
                     tsearch: { prefix: true }
                   }
