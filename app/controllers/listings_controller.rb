@@ -68,7 +68,7 @@ class ListingsController < ApplicationController
     @listing.destroy!
 
     respond_to do |format|
-      format.html { redirect_to listings_path, status: :see_other, notice: "Listingzzz was successfully destroyed." }
+      format.html { redirect_to dashboard_listings_path, status: :see_other, notice: "Listingzzz was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -81,15 +81,14 @@ class ListingsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_listings
-      @listing = Listing.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def listing_params
-      params.require(:listing).permit(:title, :location, :price, :num_guests, :owner, :description, photos: [])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_listings
+    @listing = Listing.find(params[:id])
+  end
 
-
+  # Only allow a list of trusted parameters through.
+  def listing_params
+    params.require(:listing).permit(:title, :location, :price, :num_guests, :owner, :description, photos: [])
+  end
 end
