@@ -18,16 +18,20 @@
             <h3 class="my-2 text-sm text-gray-500"><%= booking.listing.location %></h3>
           </div>
           <p class="mt-2 text-sm text-gray-500"><%= pluralize(booking.listing.num_guests, "guest") %> allowed</p>
-          <h3 class="mt-2 text-sm"><%= booking.start_date %> to <%= booking.end_date %></h3>
+          <h3 class="mt-2 text-sm"><%= booking.start_date %>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-4 inline mb-0.5 text-gray-500">
+            <path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+          </svg>
+          <%= booking.end_date %></h3>
           <dl class="mt-1 flex grow flex-col justify-between">
             <dd>
             <% case booking.status %>
             <% when "confirmed" %>
-              <span class="inline-flex items-center rounded-md bg-lime-50 px-2 py-1 text-xs font-medium text-lime-700 ring-1 ring-lime-600/20 ring-inset"><%= booking.status %></span>
+              <span class="inline-flex items-center rounded-md bg-lime-50 px-2 py-1 text-xs font-medium text-lime-700 ring-1 ring-lime-600/20 ring-inset">Confirmed</span>
             <% when "pending" %>
-              <span class="inline-flex items-center rounded-md bg-amber-50 px-2 py-1 text-xs font-medium text-amber-800 ring-1 ring-amber-600/20 ring-inset"><%= booking.status %></span>
+              <span class="inline-flex items-center rounded-md bg-amber-50 px-2 py-1 text-xs font-medium text-amber-800 ring-1 ring-amber-600/20 ring-inset">Pending</span>
             <% when "denied" %>
-              <span class="inline-flex items-center rounded-md bg-rose-50 px-2 py-1 text-xs font-medium text-rose-700 ring-1 ring-rose-600/10 ring-inset">Badge</span>
+              <span class="inline-flex items-center rounded-md bg-rose-50 px-2 py-1 text-xs font-medium text-rose-700 ring-1 ring-rose-600/10 ring-inset">Denied</span>
             <% end %>
             </dd>
           </dl>
