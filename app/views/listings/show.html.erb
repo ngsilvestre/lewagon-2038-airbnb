@@ -5,31 +5,38 @@
       <div class="relative lg:row-span-2">
         <div class="absolute inset-px rounded-lg bg-white lg:rounded-l-4xl"></div>
         <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] lg:rounded-l-[calc(2rem+1px)]">
-          <div class="@container relative min-h-120 w-full grow max-lg:mx-auto max-lg:max-w-sm">
-            <%= image_tag @listing.photos[0], class: "w-full h-full object-cover" %>
+          <div class="@container relative min-h-120 w-full grow max-lg:mx-auto max-lg:max-w-sm bg-gray-200">
+            <% if @listing.photos[0] %>
+              <%= cl_image_tag @listing.photos[0].key, class: "w-full h-full object-cover" %>
+            <% end %>
           </div>
         </div>
         <div class="pointer-events-none absolute inset-px rounded-lg shadow-sm outline outline-black/5 lg:rounded-l-4xl"></div>
       </div>
       <div class="relative max-lg:row-start-1">
         <div class="absolute inset-px rounded-lg bg-white max-lg:rounded-t-4xl"></div>
-        <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)]">
-           <%= image_tag @listing.photos[0], class: "w-full h-full object-cover" %>
+        <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)] bg-gray-200">
+           <% if @listing.photos[0] %>
+           <%= cl_image_tag @listing.photos[0].key, class: "w-full h-full object-cover" %>
+           <% end %>
         </div>
         <div class="pointer-events-none absolute inset-px rounded-lg shadow-sm outline outline-black/5 max-lg:rounded-t-4xl"></div>
       </div>
       <div class="relative max-lg:row-start-3 lg:col-start-2 lg:row-start-2">
         <div class="absolute inset-px rounded-lg bg-white"></div>
-        <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)]">
-           <%= image_tag @listing.photos[1], class: "w-full h-full object-cover" %>
+        <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] bg-gray-200">
+          <% if @listing.photos[1] %>
+            <%= cl_image_tag @listing.photos[1].key, class: "w-full h-full object-cover" %>
+          <% end %>
         </div>
         <div class="pointer-events-none absolute inset-px rounded-lg shadow-sm outline outline-black/5"></div>
       </div>
       <div class="relative lg:row-span-2">
         <div class="absolute inset-px rounded-lg bg-white max-lg:rounded-b-4xl lg:rounded-r-4xl"></div>
-        <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-b-[calc(2rem+1px)] lg:rounded-r-[calc(2rem+1px)]">
-       <%= image_tag @listing.photos[2], class: "w-full h-full object-cover" %>
-
+        <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-b-[calc(2rem+1px)] lg:rounded-r-[calc(2rem+1px)] bg-gray-200">
+          <% if @listing.photos[2] %>
+            <%= cl_image_tag @listing.photos[2].key, class: "w-full h-full object-cover" %>
+          <% end %>
         </div>
         <div class="pointer-events-none absolute inset-px rounded-lg shadow-sm outline outline-black/5 max-lg:rounded-b-4xl lg:rounded-r-4xl"></div>
       </div>
