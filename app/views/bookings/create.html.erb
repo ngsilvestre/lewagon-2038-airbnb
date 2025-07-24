@@ -1,0 +1,11 @@
+<% content_for :title do %>
+  Bookings
+<% end %>
+
+<div>
+  <%= link_to "Back to listing", listing_path(@listing) %>
+</div>
+
+<h1>New Booking for <%= @listing.title %></h1>
+
+<%= render "bookings/form", listing: @listing, booking: Booking.new %>
