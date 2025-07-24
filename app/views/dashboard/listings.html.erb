@@ -18,14 +18,14 @@
             <p class="text-sm/6 font-semibold text-gray-900"><%= listing.location %></p>
           </div>
           <div class="mt-1 flex items-center gap-x-2 text-xs/5 text-gray-500">
-            <p class="whitespace-nowrap"><%= listing.description %></p>
+            <p><%= listing.description %></p>
           </div>
         </div>
         <div class="flex flex-none items-center gap-x-4">
           <%= link_to "Pending bookings: #{Booking.where(status: :pending, listing: listing).count}",
             listing_bookings_path(listing),
             class: "hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-gray-300 ring-inset hover:bg-gray-50 sm:block" %>
-          <div  data-controller="dropdown" class="relative flex-none">
+          <div data-controller="dropdown" class="relative flex-none">
             <button id="options-menu-0-button" type="button" aria-expanded="false" aria-haspopup="true" class="relative block text-gray-500 hover:text-gray-900",
               data-action="dropdown#toggle click@window->dropdown#hide">
               <span class="absolute -inset-2.5"></span>
@@ -46,7 +46,7 @@
                 To: "transform opacity-0 scale-95"
             -->
             <div data-dropdown-target="menu"
-                class="hidden transition absolute right-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-hidden"
+                class="hidden transition transform absolute right-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-hidden"
                 data-transition-enter-from="opacity-0 scale-95"
                 data-transition-enter-to="opacity-100 scale-100"
                 data-transition-leave-from="opacity-100 scale-100"
