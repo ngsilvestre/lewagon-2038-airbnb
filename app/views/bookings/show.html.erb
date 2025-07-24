@@ -1,9 +1,17 @@
-<h1>Booking Confirmation</h1>
+<div class="max-w-lg mx-auto mt-10 bg-white shadow-md rounded-xl p-6">
+  <h1 class="text-2xl font-bold text-gray-800 mb-4 text-center">Booking Confirmation</h1>
 
-<p><%= @booking.listing.location %></p>
-<p><%= pluralize(@booking.listing.num_guests, "guest") %> allowed</p>
-<p><strong>Start Date:</strong> <%= @booking.start_date %></p>
-<p><strong>End Date:</strong> <%= @booking.end_date %></p>
-<hr>
+  <div class="space-y-3 text-gray-700">
+    <p class="text-lg font-semibold"><%= @booking.listing.location %></p>
+    <p class="text-sm text-gray-500"><%= pluralize(@booking.listing.num_guests, "guest") %> allowed</p>
 
-<%= link_to "See All Your Bookings", dashboard_bookings_path %>
+    <div class="border-t border-gray-200 pt-4">
+      <p><span class="font-semibold">Start Date:</span> <%= @booking.start_date.strftime("%B %d, %Y") %></p>
+      <p><span class="font-semibold">End Date:</span> <%= @booking.end_date.strftime("%B %d, %Y") %></p>
+    </div>
+  </div>
+
+  <div class="mt-6 text-center">
+    <%= link_to "See All Your Bookings", dashboard_bookings_path, class: "inline-block px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition" %>
+  </div>
+</div>
