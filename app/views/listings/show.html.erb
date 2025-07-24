@@ -81,7 +81,7 @@
   <!-- RIGHT CARD FOR BOOKING RESERVATION FORM -->
   <div class="mx-auto max-w-2xl bg-white p-5 inset-px rounded-lg bg-white max-lg:rounded-b-4xl lg:rounded-r-4xl shadow">
     <h2 class="font-semibold text-2xl tracking-tight text-balance text-gray-900 mb-2">$<%= format('%.0f', @listing.price) %> AUD total</h2>
-    <%= form_with(model: [@listing, @booking], local: true) do |f| %>
+    <%= form_with(url: new_listing_booking_path(@listing), method: :get, local: true) do |f| %>
   <div class="grid grid-cols-2 gap-4">
     <div>
       <%= f.label :start_date, class: "block text-sm font-medium text-gray-700" %>

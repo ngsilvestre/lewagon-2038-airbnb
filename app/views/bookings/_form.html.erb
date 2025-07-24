@@ -1,7 +1,3 @@
-<div>
-  <%= link_to "Back to listings", listing_path(@listing) %>
-</div>
-
 <%= simple_form_for [@listing, @booking] do |f| %>
   <%= f.error_notification %>
 
@@ -11,6 +7,10 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Book Now" %>
+    <%= f.button :submit, "Book Now", class: "btn btn-primary" %>
+  </div>
+
+  <div>
+    <%= link_to "Back to listing", listing_path(@listing) %>
   </div>
 <% end %>
