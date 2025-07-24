@@ -1,34 +1,117 @@
-<p class="text-green-600 mb-4"><%= notice %></p>
+<div class="bg-gray-50 py-4">
+  <div class="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
 
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-  <!-- Left Column: Listing Details -->
-  <div class="lg:col-span-2">
-    <!-- Listing Partial -->
-    <%= render @listing %>
+    <div class="mt-10 grid gap-4 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2">
+      <div class="relative lg:row-span-2">
+        <div class="absolute inset-px rounded-lg bg-white lg:rounded-l-4xl"></div>
+        <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] lg:rounded-l-[calc(2rem+1px)]">
+          <div class="@container relative min-h-120 w-full grow max-lg:mx-auto max-lg:max-w-sm">
+            <%= image_tag @listing.photos[0], class: "w-full h-full object-cover" %>
+          </div>
+        </div>
+        <div class="pointer-events-none absolute inset-px rounded-lg shadow-sm outline outline-black/5 lg:rounded-l-4xl"></div>
+      </div>
+      <div class="relative max-lg:row-start-1">
+        <div class="absolute inset-px rounded-lg bg-white max-lg:rounded-t-4xl"></div>
+        <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)]">
+           <%= image_tag @listing.photos[0], class: "w-full h-full object-cover" %>
+        </div>
+        <div class="pointer-events-none absolute inset-px rounded-lg shadow-sm outline outline-black/5 max-lg:rounded-t-4xl"></div>
+      </div>
+      <div class="relative max-lg:row-start-3 lg:col-start-2 lg:row-start-2">
+        <div class="absolute inset-px rounded-lg bg-white"></div>
+        <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)]">
+           <%= image_tag @listing.photos[1], class: "w-full h-full object-cover" %>
+        </div>
+        <div class="pointer-events-none absolute inset-px rounded-lg shadow-sm outline outline-black/5"></div>
+      </div>
+      <div class="relative lg:row-span-2">
+        <div class="absolute inset-px rounded-lg bg-white max-lg:rounded-b-4xl lg:rounded-r-4xl"></div>
+        <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-b-[calc(2rem+1px)] lg:rounded-r-[calc(2rem+1px)]">
+       <%= image_tag @listing.photos[2], class: "w-full h-full object-cover" %>
 
-    <div class="flex items-center space-x-4 mt-4">
-      <%= link_to "Edit this listing", edit_listing_path(@listing),
-        class: "text-blue-600 hover:underline" %>
-      |
-      <%= link_to "Back to listings", listings_path,
-        class: "text-blue-600 hover:underline" %>
-
-      <%= button_to "Destroy this listing", @listing,
-        method: :delete,
-        class: "text-red-600 hover:underline ml-4" %>
-    </div>
-
-    <div class="mt-6">
-      <h1 class="text-3xl font-bold mb-2"><%= @listing.title %></h1>
-      <p class="text-gray-700 text-lg leading-relaxed"><%= @listing.description %></p>
+        </div>
+        <div class="pointer-events-none absolute inset-px rounded-lg shadow-sm outline outline-black/5 max-lg:rounded-b-4xl lg:rounded-r-4xl"></div>
+      </div>
     </div>
   </div>
+</div>
 
-  <!-- Right Column: Booking Form -->
-  <div class="lg:col-span-1">
-    <div class="border rounded-xl shadow p-6 bg-white">
-      <h2 class="text-2xl font-semibold mb-4 text-gray-800">Book this listing</h2>
-      <%= render "bookings/form", listing: @listing, booking: @booking %>
-    </div>
+
+
+<div class="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">
+  <div class="absolute inset-0 -z-10 overflow-hidden">
+    <svg aria-hidden="true" class="absolute top-0 left-[max(50%,25rem)] h-256 w-512 -translate-x-1/2 mask-[radial-gradient(64rem_64rem_at_top,white,transparent)] stroke-gray-200">
+      <defs>
+        <pattern id="e813992c-7d03-4cc4-a2bd-151760b470a0" width="200" height="200" x="50%" y="-1" patternUnits="userSpaceOnUse">
+          <path d="M100 200V.5M.5 .5H200" fill="none" />
+        </pattern>
+      </defs>
+      <svg x="50%" y="-1" class="overflow-visible fill-gray-50">
+        <path d="M-100.5 0h201v201h-201Z M699.5 0h201v201h-201Z M499.5 400h201v201h-201Z M-300.5 600h201v201h-201Z" stroke-width="0" />
+      </svg>
+      <rect width="100%" height="100%" fill="url(#e813992c-7d03-4cc4-a2bd-151760b470a0)" stroke-width="0" />
+    </svg>
   </div>
+
+  <!-- LEFT CARD FOR LISTING DETAILS -->
+  <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-start lg:gap-y-10">
+    <div class="lg:col-span-2 lg:col-start-1 lg:row-start-1 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+      <div class="lg:pr-4">
+        <div class="lg:max-w-lg">
+            <h2 class="text-3xl font-semibold"><%= @listing.title %></h2>
+            <p class="mx-auto mt-2 max-w-lg text-indigo-600 font-semibold tracking-tight text-balance text-gray-950"><%= @listing.location %></p>
+            <div class="my-4">
+            <p class="text-gray-600"><%= @listing.description %></p>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="-mt-12 -ml-12 p-12 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden">
+        <!-- FORM -->
+
+
+  <!-- RIGHT CARD FOR BOOKING RESERVATION FORM -->
+  <div class="mx-auto max-w-2xl bg-white p-5 inset-px rounded-lg bg-white max-lg:rounded-b-4xl lg:rounded-r-4xl shadow">
+    <h2 class="font-semibold text-2xl tracking-tight text-balance text-gray-900 mb-2">$<%= format('%.0f', @listing.price) %> AUD total</h2>
+    <%= form_with(model: [@listing, @booking], local: true) do |f| %>
+  <div class="grid grid-cols-2 gap-4">
+    <div>
+      <%= f.label :start_date, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.date_field :start_date, class: "p-3 mt-1 block w-full rounded-md border-gray-300 shadow-sm" %>
+    </div>
+
+    <div>
+      <%= f.label :end_date, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.date_field :end_date, class: "p-3 mt-1 block w-full rounded-md border-gray-300 shadow-sm" %>
+    </div>
+
+
+  </div>
+
+  <div class="mt-4">
+    <%= f.submit "Reserve", class: "block text-center w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mb-5" %>
+    <p class="text-center text-gray-700">You won't be charged yet</p>
+    <p class="text-center text-gray-700">Price shown is the total trip price, including additional fees and taxes.</p>
+  </div>
+  <% end %>
+    <%# <form action="#" method="POST" class="mx-auto mt-16 max-w-xl sm:mt-20">
+    <div class="mt-10">
+
+        <button type="submit" class="block text-center w-full rounded-md bg-indigo-600 px-3.5 py-2.5 mb-5 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Reserve</button>
+        <p class="text-center text-gray-700">You won't be charged yet </p>
+        <p class="text-center text-gray-700">Price shown is the total trip price, including additional fees and taxes. </p>
+      </div>
+    </form> %>
+  </div>
+  </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div>
+
+
 </div>
