@@ -1,6 +1,6 @@
+<%# IMAGES %>
 <div class="bg-gray-50 py-4">
   <div class="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
-
     <div class="mt-10 grid gap-4 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2">
       <div class="relative lg:row-span-2">
         <div class="absolute inset-px rounded-lg bg-white lg:rounded-l-4xl"></div>
@@ -43,9 +43,7 @@
     </div>
   </div>
 </div>
-
-
-
+<%# INFO AND BOOKING FORM %>
 <div class="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">
   <div class="absolute inset-0 -z-10 overflow-hidden">
     <svg aria-hidden="true" class="absolute top-0 left-[max(50%,25rem)] h-256 w-512 -translate-x-1/2 mask-[radial-gradient(64rem_64rem_at_top,white,transparent)] stroke-gray-200">
@@ -66,59 +64,94 @@
     <div class="lg:col-span-2 lg:col-start-1 lg:row-start-1 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
       <div class="lg:pr-4">
         <div class="lg:max-w-lg">
-            <h2 class="text-3xl font-semibold"><%= @listing.title %></h2>
-            <p class="mx-auto mt-2 max-w-lg text-indigo-600 font-semibold tracking-tight text-balance text-gray-950"><%= @listing.location %></p>
-            <div class="my-4">
+          <h2 class="text-3xl font-semibold"><%= @listing.title %></h2>
+          <p class="mx-auto mt-2 max-w-lg text-rose-600 font-semibold tracking-tight text-balance text-gray-950"><%= @listing.location %></p>
+          <div class="my-4">
             <p class="text-gray-600"><%= @listing.description %></p>
-            </div>
+          </div>
         </div>
       </div>
     </div>
     <div class="-mt-12 -ml-12 p-12 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden">
-        <!-- FORM -->
+      <!-- RIGHT CARD FOR BOOKING RESERVATION FORM -->
+      <div class="mx-auto max-w-2xl bg-white p-5 inset-px rounded-lg bg-white max-lg:rounded-b-4xl lg:rounded-r-4xl shadow">
+        <h2 class="font-semibold text-2xl tracking-tight text-balance text-gray-900 mb-2">$<%= format('%.0f', @listing.price) %> AUD total</h2>
+        <%= form_with(url: new_listing_booking_path(@listing), method: :get, local: true) do |f| %>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <%= f.label :start_date, class: "block text-sm font-medium text-gray-700" %>
+              <%= f.date_field :start_date, class: "p-3 mt-1 block w-full rounded-md border-gray-300 shadow-sm" %>
+            </div>
 
-
-  <!-- RIGHT CARD FOR BOOKING RESERVATION FORM -->
-  <div class="mx-auto max-w-2xl bg-white p-5 inset-px rounded-lg bg-white max-lg:rounded-b-4xl lg:rounded-r-4xl shadow">
-    <h2 class="font-semibold text-2xl tracking-tight text-balance text-gray-900 mb-2">$<%= format('%.0f', @listing.price) %> AUD total</h2>
-    <%= form_with(url: new_listing_booking_path(@listing), method: :get, local: true) do |f| %>
-  <div class="grid grid-cols-2 gap-4">
-    <div>
-      <%= f.label :start_date, class: "block text-sm font-medium text-gray-700" %>
-      <%= f.date_field :start_date, class: "p-3 mt-1 block w-full rounded-md border-gray-300 shadow-sm" %>
-    </div>
-
-    <div>
-      <%= f.label :end_date, class: "block text-sm font-medium text-gray-700" %>
-      <%= f.date_field :end_date, class: "p-3 mt-1 block w-full rounded-md border-gray-300 shadow-sm" %>
-    </div>
-
-
-  </div>
-
-  <div class="mt-4">
-    <%= f.submit "Reserve", class: "block text-center w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mb-5" %>
-    <p class="text-center text-gray-700">You won't be charged yet</p>
-    <p class="text-center text-gray-700">Price shown is the total trip price, including additional fees and taxes.</p>
-  </div>
-  <% end %>
-    <%# <form action="#" method="POST" class="mx-auto mt-16 max-w-xl sm:mt-20">
-    <div class="mt-10">
-
-        <button type="submit" class="block text-center w-full rounded-md bg-indigo-600 px-3.5 py-2.5 mb-5 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Reserve</button>
-        <p class="text-center text-gray-700">You won't be charged yet </p>
-        <p class="text-center text-gray-700">Price shown is the total trip price, including additional fees and taxes. </p>
+            <div>
+              <%= f.label :end_date, class: "block text-sm font-medium text-gray-700" %>
+              <%= f.date_field :end_date, class: "p-3 mt-1 block w-full rounded-md border-gray-300 shadow-sm" %>
+            </div>
+          </div>
+          <div class="mt-4">
+            <%= f.submit "Reserve", class: "block text-center w-full rounded-md bg-rose-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-rose-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600 mb-5" %>
+            <p class="text-center text-gray-700">You won't be charged yet</p>
+            <p class="text-center text-gray-700">Price shown is the total trip price, including additional fees and taxes.</p>
+          </div>
+        <% end %>
       </div>
-    </form> %>
-  </div>
-  </div>
-
     </div>
-
   </div>
 </div>
+<%# REVIEWS %>
+<div class="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
+  <div class="py-12 border-t border-gray-200">
+    <% if @listing.reviews.empty? %>
+      <div class="flex flex-col items-center gap-4 text-center">
+        <div class="flex items-center space-x-2 mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-16">
+            <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clip-rule="evenodd" />
+          </svg>
+        </div>
+        <h2 class="text-2xl font-medium">No reviews yet</h2>
+        <p class="text-gray-500 text-pretty text-lg max-w-sm">Reserve this place and be the first to leave a review!</p>
+      </div>
+    <% else %>
+      <div class="flex flex-col items-center gap-4 py-12 pb-20 border-b border-gray-200 text-center">
+        <div class="flex items-center space-x-2 mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-16">
+            <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clip-rule="evenodd" />
+          </svg>
+          <p class="text-7xl font-medium"><%= @listing.average_rating %></p>
+        </div>
+        <h2 class="text-2xl font-medium">Guest Favourite</h2>
+        <p class="text-gray-500 text-pretty text-lg max-w-sm">This home is a guest favourite based on ratings, reviews and reliability</p>
+      </div>
 
-<div>
-
-
+      <%# display reviews %>
+      <h3 class="text-xl font-medium mt-8">Reviews</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-4">
+        <% @listing.reviews.each do |review| %>
+          <div class="py-6">
+            <div class="flex items-center gap-2 mb-4">
+              <div class="flex items-center gap-2 -ml-1.5">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-10 text-gray-200">
+                  <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" clip-rule="evenodd" />
+                </svg>
+                <div>
+                  <p class="text-sm font-medium"><%= review.booking.user.email %></p>
+                  <p class="text-xs text-gray-500">2 yrs on OurBNB</p>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 mb-2">
+              <p class="text-sm text-gray-500">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-3 inline text-gray-400">
+                  <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z" clip-rule="evenodd" />
+                </svg>
+                <%= review.rating  %>
+              </p>
+              <p class="text-sm text-gray-500 mt-1"><%= review.created_at.strftime("%B %d, %Y") %></p>
+            </div>
+            <p class="text-gray-900"><%= review.content %></p>
+          </div>
+        <% end %>
+      </div>
+  </div>
+  <% end %>
 </div>
