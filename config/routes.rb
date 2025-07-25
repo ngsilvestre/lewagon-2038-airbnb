@@ -10,8 +10,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   get "dashboard/listings", to: "dashboard#listings", as: :dashboard_listings
   get "dashboard/bookings", to: "dashboard#bookings", as: :dashboard_bookings
+  get "dashboard/profile", to: "dashboard#profile", as: :dashboard_profile
   resources :listings do
-    resources :bookings, only: %i(index new create show update destroy)
+    resources :bookings, only: %i(index new create)
     member do
       delete 'delete_photo/:photo_id', to: 'listings#delete_photo', as: 'delete_photo'
     end

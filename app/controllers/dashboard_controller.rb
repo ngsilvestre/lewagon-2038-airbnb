@@ -6,4 +6,7 @@ class DashboardController < ApplicationController
   def bookings
     @user_bookings = Booking.where(user: current_user)
   end
+
+  def profile
+  end
 end
