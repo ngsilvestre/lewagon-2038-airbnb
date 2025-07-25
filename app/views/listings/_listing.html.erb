@@ -1,5 +1,5 @@
 <div id="<%= dom_id listing %>">
-  <%= link_to listing_path(listing), class: "space-y-2 block" do %>
+  <%= link_to listing_path(listing, num_guests: params[:num_guests], start_date: params[:start_date], end_date: params[:end_date]), class: "space-y-2 block" do %>
     <div class="w-full aspect-square overflow-x-auto bg-white border border-gray-200 rounded-lg shadow">
       <%= image_tag "https://picsum.photos/seed/#{listing.location.parameterize}/300/300", class: "w-full h-full object-cover rounded" %>
     </div>

@@ -1,32 +1,22 @@
 <div class="relative" data-controller="usernavmenu">
   <button type="button" class="inline-flex items-center gap-x-1 text-sm/6 font-semibold text-white"
   data-action="click->usernavmenu#toggle">
-    <span>Welcome  <%= current_user.email %> </span>
-    <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5">
-      <path d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
-    </svg>
+    <i class="fa-solid fa-user flex-none text-white p-3 bg-gray-900 rounded-full"></i>
   </button>
-  <div class="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 bg-transparent px-4 hidden"  data-usernavmenu-target="panel">
+  <div class="absolute z-10 mt-5 flex w-screen max-w-max -translate-x-8/10 bg-transparent hidden"  data-usernavmenu-target="panel">
     <div class="w-screen max-w-xs flex-auto overflow-hidden rounded-3xl bg-white text-sm/6 shadow-lg ring-1 ring-gray-900/5">
       <div class="p-4">
         <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
-          <%= link_to dashboard_bookings_path, class: "font-semibold text-gray-900 flex flex-row w-full gap-4 items-center " do %>
-            <i class="fas fa-calendar-check text-3xl text-gray-600" aria-hidden="true"></i>
-              Dashboard
-          <% end %>
-        </div>
-        <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
-          <%= link_to dashboard_listings_path, class: "font-semibold text-gray-900 flex flex-row w-full gap-4 items-center " do %>
-            <i class="fas fa-list text-3xl text-gray-600" aria-hidden="true"></i>
-              Listing
-          <% end %>
-        </div>
+          <a href="#" class="font-semibold text-gray-900 flex flex-row w-full gap-4 items-center">
+            <i class="fa-solid fa-user text-3xl text-gray-600"></i>
+            Profile
+          </a>
+
+          </div>
+
       </div>
-      <div class="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
-        <a href="#" class="flex items-center justify-center gap-x-2.5 p-3 font-semibold text-gray-900 hover:bg-gray-100">
-        <i class="fa-solid fa-user flex-none text-gray-400"></i>
-          Profile
-        </a>
+      <div class="grid divide-x divide-gray-900/5 bg-gray-50">
+
         <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "flex items-center justify-center gap-x-2.5 p-3 font-semibold text-gray-900 hover:bg-gray-100" do %>
          <i class="fa fa-sign-out size-5 flex-none text-gray-400" aria-hidden="true"></i>
           Logout
