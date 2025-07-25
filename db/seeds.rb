@@ -6,30 +6,35 @@ Booking.destroy_all
 norman_image_paths = [
   Rails.root.join("db/seeds_images/norman/photo1.webp"),
   Rails.root.join("db/seeds_images/norman/photo2.webp"),
-  Rails.root.join("db/seeds_images/norman/photo3.webp")
+  Rails.root.join("db/seeds_images/norman/photo3.webp"),
+  Rails.root.join("db/seeds_images/norman/photo4.webp")
 ]
 quinn_image_paths = [
   Rails.root.join("db/seeds_images/quinn/photo1.webp"),
   Rails.root.join("db/seeds_images/quinn/photo2.webp"),
-  Rails.root.join("db/seeds_images/quinn/photo3.webp")
+  Rails.root.join("db/seeds_images/quinn/photo3.webp"),
+  Rails.root.join("db/seeds_images/quinn/photo4.webp")
 ]
 
 mark_image_paths = [
   Rails.root.join("db/seeds_images/mark/photo1.webp"),
   Rails.root.join("db/seeds_images/mark/photo2.webp"),
-  Rails.root.join("db/seeds_images/mark/photo3.webp")
+  Rails.root.join("db/seeds_images/mark/photo3.webp"),
+  Rails.root.join("db/seeds_images/mark/photo4.webp")
 ]
 
 dominique_image_paths = [
   Rails.root.join("db/seeds_images/dominique/photo1.webp"),
   Rails.root.join("db/seeds_images/dominique/photo2.webp"),
-  Rails.root.join("db/seeds_images/dominique/photo3.webp")
+  Rails.root.join("db/seeds_images/dominique/photo3.webp"),
+  Rails.root.join("db/seeds_images/dominique/photo4.webp")
 ]
 
 george_image_paths = [
   Rails.root.join("db/seeds_images/george/photo1.webp"),
   Rails.root.join("db/seeds_images/george/photo2.webp"),
-  Rails.root.join("db/seeds_images/george/photo3.webp")
+  Rails.root.join("db/seeds_images/george/photo3.webp"),
+  Rails.root.join("db/seeds_images/george/photo4.webp")
 ]
 
 def file_upload(image_paths)
