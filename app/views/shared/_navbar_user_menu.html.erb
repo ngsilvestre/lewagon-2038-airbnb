@@ -1,7 +1,8 @@
 <div class="relative" data-controller="usernavmenu">
-  <button type="button" class="inline-flex items-center gap-x-1 text-sm/6 font-semibold text-white"
+  <button type="button" class="flex items-center justify-center gap-x-1 text-sm/6 font-semibold text-gray-500 bg-gray-200 rounded-full size-8"
   data-action="click->usernavmenu#toggle">
-    <i class="fa-solid fa-user flex-none text-white p-3 bg-gray-900 rounded-full"></i>
+    <%# <i class="fa-solid fa-user flex-none text-white p-3 bg-gray-900 rounded-full"></i> %>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor" class="size-4"><rect width="256" height="256" fill="none"/><path d="M230.93,220a8,8,0,0,1-6.93,4H32a8,8,0,0,1-6.92-12c15.23-26.33,38.7-45.21,66.09-54.16a72,72,0,1,1,73.66,0c27.39,8.95,50.86,27.83,66.09,54.16A8,8,0,0,1,230.93,220Z"/></svg>
   </button>
   <div class="absolute z-10 mt-5 flex w-screen max-w-max -translate-x-8/10 bg-transparent hidden"  data-usernavmenu-target="panel">
     <div class="w-screen max-w-xs flex-auto overflow-hidden rounded-3xl bg-white text-sm/6 shadow-lg ring-1 ring-gray-900/5">

@@ -15,14 +15,14 @@
     <div class="py-3 col-span-2">
       <div class="px-3 border border-t-0 border-b-0 border-l-gray-300 border-r-gray-300 relative" >
           <p class="text-sm">Check in</p>
-           <%= f.date_field :start_date, value:params[:start_date], class: "border border-t-0 border-l-0 border-r-0 border-b-gray-300  focus:outline-none text-gray-400" %>
+           <%= f.date_field :start_date, value:params[:start_date], class: "border-0 focus:outline-none text-gray-400" %>
       </div>
     </div>
     <div class="py-3 col-span-2">
     <div class="px-3 border border-t-0 border-b-0 border-l-0 border-r-gray-300 relative" >
       <div data-action="click->popup-form#toggleEndDate">
         <p class="text-sm">Check out</p>
-        <%= f.date_field :end_date, value:params[:end_date], class: "border border-t-0 border-l-0 border-r-0 border-b-gray-300  focus:outline-none text-gray-400" %>
+        <%= f.date_field :end_date, value:params[:end_date], class: "border-0 focus:outline-none text-gray-400" %>
       </div>
     </div>
     </div>
