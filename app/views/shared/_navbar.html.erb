@@ -1,32 +1,50 @@
-<header class="bg-gray-900" >
-  <nav aria-label="Global" class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
-    <div class="flex lg:flex-1">
-      <%= link_to root_path, class: "-m-1.5 p-1.5" do %>
-        <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="" class="h-8 w-auto" />
+<header class="border-b border-gray-300" style="background: linear-gradient(180deg,#ffffff 39.9%,#f8f8f8 100%)" data-controller="popup-form">
+  <nav aria-label="Global" class="container mx-auto grid grid-cols-5 justify-between p-3">
+    <div class="col-span-1">
+      <%= link_to root_path, class: "p-2 rounded bg-rose-500 text-gray-100 inline-flex justify-center items-center" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor" class="text-white size-4"><rect width="256" height="256" fill="none"/><path d="M224,120v96a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V120a15.87,15.87,0,0,1,4.69-11.32l80-80a16,16,0,0,1,22.62,0l80,80A15.87,15.87,0,0,1,224,120Z"/></svg>
       <% end %>
     </div>
-    <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+
+
     <% if user_signed_in? %>
-      <%= render "shared/navbar_user_menu" %>
-    <% else %>
-      <%= link_to new_user_session_path, class: "text-sm/6 font-semibold text-white" do %>
-        Login <span aria-hidden="true">&rarr;</span>
-      <% end %>
-    <% end %>
-    <%= link_to "Dashboard", dashboard_bookings_path, class: "text-white hover:text-gray-300 flex-row-right" %>
-    <%= link_to "Listings", dashboard_listings_path, class: "text-white hover:text-gray-300 flex-row-right" %>
+      <div class="col-span-3 self-center justify-self-center">
+        <%= link_to dashboard_bookings_path, class: "text-sm/6 font-semibold text-gray-900" do %> Dashboard
+          <% end %>
+        &nbsp;&middot;&nbsp;
+        <%= link_to dashboard_listings_path, class: "text-sm/6 font-semibold text-gray-900" do %>
+              Listing
+        <% end %>
+        &nbsp;&middot;&nbsp;
+        <a href="#" class="text-sm/6 font-semibold text-gray-900"  data-action="click->popup-form#showForm">Search</a>
+      </div>
+      <div class="hidden lg:flex lg:flex-1 lg:justify-end col-span-1 items-center text-white">
+        <%= render "shared/navbar_user_menu" %>
     </div>
+    <% else %>
+    <div class="flex justify-self-end col-span-4 items-center">
+      <%= link_to new_user_session_path, class: "text-sm/6 font-semibold text-gray-900" do %>
+        Login <span aria-hidden="true"></span>
+      <% end %>
+       &nbsp;&middot;&nbsp;
+      <%= link_to new_user_registration_path, class: "text-sm/6 font-semibold text-gray-900" do %>
+        Signup <span aria-hidden="true"></span>
+      <% end %>
+    </div>
+    <% end %>
+
+
   </nav>
+      <%= render "shared/popup_search_form" %>
   <!-- Mobile menu, show/hide based on menu open state. -->
-  <div role="dialog" aria-modal="true" class="lg:hidden">
-    <!-- Background backdrop, show/hide based on slide-over state. -->
+  <!-- <div role="dialog" aria-modal="true" class="lg:hidden">
     <div class="fixed inset-0 z-50"></div>
     <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-100/10">
       <div class="flex items-center justify-between">
         <a href="#" class="-m-1.5 p-1.5">
           <span class="sr-only">Your Company</span>
 
-          <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="" class="h-8 w-auto" />
+          <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=rose&shade=500" alt="" class="h-8 w-auto" />
         </a>
         <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-400">
           <span class="sr-only">Close menu</span>
@@ -43,5 +61,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>-->
 </header>

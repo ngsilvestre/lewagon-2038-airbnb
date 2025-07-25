@@ -1,0 +1,50 @@
+<div class="max-w-[980px] mx-auto my-5 bg-white shadow-md rounded-full border border-gray-300 hidden" data-popup-form-target="container">
+<%= form_with url: listings_path, method: :get do |f| %>
+  <div class="grid grid-cols-8">
+    <div class="col-span-2 h-full py-3 pl-7">
+      <div class="px-2 ">
+        <p class="text-sm">Where</p>
+
+    <%= text_field_tag :query,
+        params[:query],
+        class: "text-sm text-gray-700 focus:outline-none",
+        placeholder: "Search Destinations"
+    %>
+      </div>
+    </div>
+    <div class="py-3 col-span-2">
+      <div class="px-3 border border-t-0 border-b-0 border-l-gray-300 border-r-gray-300 relative" >
+          <p class="text-sm">Check in</p>
+           <%= f.date_field :start_date, value:params[:start_date], class: "border-0 focus:outline-none text-gray-400" %>
+      </div>
+    </div>
+    <div class="py-3 col-span-2">
+    <div class="px-3 border border-t-0 border-b-0 border-l-0 border-r-gray-300 relative" >
+      <div data-action="click->popup-form#toggleEndDate">
+        <p class="text-sm">Check out</p>
+        <%= f.date_field :end_date, value:params[:end_date], class: "border-0 focus:outline-none text-gray-400" %>
+      </div>
+    </div>
+    </div>
+
+    <div class="py-3">
+      <div class="px-3">
+        <p class="text-sm">Who</p>
+          <%= text_field_tag :num_guests,
+              params[:num_guests],
+              class: "text-sm  text-gray-700 focus:outline-none w-full",
+              placeholder: "Add Guests"
+          %>
+      </div>
+    </div>
+    <div class="p-3 flex justify-end">
+        <%= button_tag name:nil, type:"submit", class: "size-11 flex justify-center items-center rounded-full bg-rose-600 text-center font-semibold text-white hover:bg-rose-500" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+            <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z" clip-rule="evenodd" />
+          </svg>
+        <% end %>
+    </div>
+  </div>
+
+  <% end %>
+</div>

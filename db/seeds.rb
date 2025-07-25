@@ -2,34 +2,40 @@
 User.destroy_all
 Listing.destroy_all
 Booking.destroy_all
+Review.destroy_all
 
 norman_image_paths = [
   Rails.root.join("db/seeds_images/norman/photo1.webp"),
   Rails.root.join("db/seeds_images/norman/photo2.webp"),
-  Rails.root.join("db/seeds_images/norman/photo3.webp")
+  Rails.root.join("db/seeds_images/norman/photo3.webp"),
+  Rails.root.join("db/seeds_images/norman/photo4.webp")
 ]
 quinn_image_paths = [
   Rails.root.join("db/seeds_images/quinn/photo1.webp"),
   Rails.root.join("db/seeds_images/quinn/photo2.webp"),
-  Rails.root.join("db/seeds_images/quinn/photo3.webp")
+  Rails.root.join("db/seeds_images/quinn/photo3.webp"),
+  Rails.root.join("db/seeds_images/quinn/photo4.webp")
 ]
 
 mark_image_paths = [
   Rails.root.join("db/seeds_images/mark/photo1.webp"),
   Rails.root.join("db/seeds_images/mark/photo2.webp"),
-  Rails.root.join("db/seeds_images/mark/photo3.webp")
+  Rails.root.join("db/seeds_images/mark/photo3.webp"),
+  Rails.root.join("db/seeds_images/mark/photo4.webp")
 ]
 
 dominique_image_paths = [
   Rails.root.join("db/seeds_images/dominique/photo1.webp"),
   Rails.root.join("db/seeds_images/dominique/photo2.webp"),
-  Rails.root.join("db/seeds_images/dominique/photo3.webp")
+  Rails.root.join("db/seeds_images/dominique/photo3.webp"),
+  Rails.root.join("db/seeds_images/dominique/photo4.webp")
 ]
 
 george_image_paths = [
   Rails.root.join("db/seeds_images/george/photo1.webp"),
   Rails.root.join("db/seeds_images/george/photo2.webp"),
-  Rails.root.join("db/seeds_images/george/photo3.webp")
+  Rails.root.join("db/seeds_images/george/photo3.webp"),
+  Rails.root.join("db/seeds_images/george/photo4.webp")
 ]
 
 def file_upload(image_paths)
@@ -121,3 +127,12 @@ dominique_booking.save
 puts "creating george's booking"
 george_booking = Booking.new(start_date: Date.new(2025, 7, 27), end_date: Date.new(2025, 7, 28), listing: mark_listing, user: george)
 george_booking.save
+
+# Create reviews
+[norman_booking, quinn_booking, mark_booking, dominique_booking, george_booking ].each do |booking|
+  Review.create!(
+    content: "Amazing stay! The place was spotless and cozy.",
+    rating: 5,
+    booking: booking
+  )
+end
