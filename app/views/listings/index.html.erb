@@ -1,37 +1,26 @@
-<div class="container mx-auto max-w-5xl p-4">
-  <p style="color: green"><%= notice %></p>
-
-
-    <div class="bg-white py-5 sm:py-32">
-      <div class="mx-auto max-w-7xl px-6 lg:px-8">
-        <div class="mx-auto max-w-2xl lg:mx-0">
-          <%# <h2 class="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">View Listings</h2> %>
-          <%= form_with url: listings_path, method: :get, class: "flex gap-8" do %>
-            <%= text_field_tag :query,
-                  params[:query],
-                  class: "flex grow rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600",
-                  placeholder: "Search for places"
-              %>
-            <%= submit_tag "Search", name: "", class: "rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
-          <% end %>
-        </div>
-          <ul role="list" class="mx-auto mt-4 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-            <% @listings.each do |listing| %>
-              <%#= link_to listing_path(listing) do %>
-                <%= render listing %>
-              <%# end %>
-            <% end %>
-          </ul>
-        </div>
+<div class="container-full mx-auto p-4">
+  <div class="grid grid-cols-3 gap-5">
+    <div id="listings" class="col-span-2">
+      <%= form_with url: listings_path, method: :get, class: "grid grid-cols-3 gap-3 my-3" do %>
+        <%= text_field_tag :query,
+              params[:query],
+              class: "col-span-2 block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600",
+              placeholder: "Search for places"
+          %>
+        <%= submit_tag "Search", name: "", class: "col-span1 block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+      <% end %>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+        <% @listings.each do |listing| %>
+          <%= render listing %>
+        <% end %>
+      </div>
     </div>
-</div>
-
-
-  <%= link_to "New listing", new_listing_path %>
-</div>
-
-<%# MAPS CONTAINER  %>
-<div style="width: 100%; height: 600px;"
+    <div style="width: 100%; height: calc(100vh - 150px);" class="col-span-1"
   data-controller="map"
   data-map-markers-value="<%= @markers.to_json %>"
   data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+
+  </div>
+
+</div>
+<%# MAPS CONTAINER  %>

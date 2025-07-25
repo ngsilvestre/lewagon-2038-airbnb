@@ -4,8 +4,11 @@ class BookingsController < ApplicationController
     @listing = Listing.find(params[:listing_id]) if params[:listing_id]
   end
 
+  # GET /listings/:listing_id/bookings/new?start_date=YYYY-MM-DD&end_date=YYYY-MM-DD
   def new
-    @booking = Booking.new
+    @start_date = params[:start_date] ? Date.parse(params[:start_date]) : nil
+    @end_date = params[:end_date] ? Date.parse(params[:end_date]) : nil
+    @booking = Booking.new()
     @listing = Listing.find(params[:listing_id]) if params[:listing_id]
   end
 
@@ -33,7 +36,7 @@ class BookingsController < ApplicationController
   def update
     @booking = Booking.find(params[:id])
     @booking.update(booking_params)
-    redirect_to dashboard_listings_path
+    redirect_to listing_bookings_path(@booking.listing)
   end
 
   def destroy
