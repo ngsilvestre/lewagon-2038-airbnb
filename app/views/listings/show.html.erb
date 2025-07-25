@@ -1,7 +1,11 @@
 <%# IMAGES %>
 <div class="bg-gray-50 py-4">
-  <div class="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
-    <div class="mt-10 grid gap-4 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2">
+  <div class="mx-auto mt-6 max-w-2xl px-6 lg:max-w-7xl lg:px-8">
+    <%# Link back to listings index %>
+    <div class="mb-4">
+      <%= link_to "Back to Listings", listings_path, class: "text-sm/6 font-medium underline text-gray-900 hover:text-gray-700" %>
+    </div>
+    <div class="grid gap-4 lg:grid-cols-3 lg:grid-rows-2">
       <div class="relative lg:row-span-2">
         <div class="absolute inset-px rounded-lg bg-white lg:rounded-l-4xl"></div>
         <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] lg:rounded-l-[calc(2rem+1px)]">

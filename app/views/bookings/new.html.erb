@@ -1,85 +1,73 @@
-<main class="relative lg:min-h-full">
-  <div class="h-80 overflow-hidden lg:absolute lg:h-full lg:w-1/2 lg:pr-4 xl:pr-12">
-    <img src="https://tailwindcss.com/plus-assets/img/ecommerce-images/confirmation-page-06-hero.jpg" alt="TODO" class="size-full object-cover" />
+<div data-controller="booking">
+  <!-- Store price & initial dates for Stimulus -->
+  <div data-booking-target="price"
+       data-price="<%= @listing.price %>"
+       data-start-date="<%= @start_date %>"
+       data-end-date="<%= @end_date %>">
   </div>
 
-  <div>
-    <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8 lg:py-32 xl:gap-x-24">
-      <div class="lg:col-start-2">
-        <p class="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">Ready to book? <%= @listing.title %> </p>
-        <p class="mt-2 text-base text-gray-500">Remember to check all details before booking!</p>
-        <%# render "bookings/form", listing: @listing, booking: @booking %>
-        <%# display @start_date and @end_date %>
-        <div class="w-full flex items-center space-x-4 mt-4">
-          <div class="flex-1 bg-white rounded-xl shadow-sm p-4 border border-gray-200">
-            <span class="block text-sm text-gray-600">Start Date:</span>
-            <span class="block font-medium text-gray-900"><%= @start_date.strftime("%B %d, %Y") if @start_date %></span>
-          </div>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-gray-400">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-          </svg>
+  <main class="relative lg:min-h-full">
+    <div class="h-80 overflow-hidden lg:absolute lg:h-full lg:w-1/2 lg:pr-4 xl:pr-12">
+      <img src="https://tailwindcss.com/plus-assets/img/ecommerce-images/confirmation-page-06-hero.jpg"
+           alt="TODO"
+           class="size-full object-cover" />
+    </div>
 
-          <div class="flex-1 bg-white rounded-xl shadow-sm p-4 border border-gray-200">
-            <span class="block text-sm text-gray-600">End Date:</span>
-            <span class="block font-medium text-gray-900"><%= @end_date.strftime("%B %d, %Y") if @end_date %></span>
+    <div>
+      <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8 lg:py-32 xl:gap-x-24">
+        <div class="lg:col-start-2">
+          <p class="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+            Ready to book? <%= @listing.title %>
+          </p>
+          <p class="mt-2 text-base text-gray-500">
+            Remember to check all details before booking!
+          </p>
+
+          <!-- Show Start & End Dates -->
+          <div class="w-full flex items-center space-x-4 mt-4">
+            <div class="flex-1 bg-white rounded-xl shadow-sm p-4 border border-gray-200">
+              <span class="block text-sm text-gray-600">Start Date:</span>
+              <span class="block font-medium text-gray-900">
+                <%= @start_date.strftime("%B %d, %Y") if @start_date %>
+              </span>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                 stroke-width="1.5" stroke="currentColor"
+                 class="size-6 text-gray-400">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+            </svg>
+            <div class="flex-1 bg-white rounded-xl shadow-sm p-4 border border-gray-200">
+              <span class="block text-sm text-gray-600">End Date:</span>
+              <span class="block font-medium text-gray-900">
+                <%= @end_date.strftime("%B %d, %Y") if @end_date %>
+              </span>
+            </div>
           </div>
+
+          <!-- Confirm and Pay -->
+          <%= link_to "Confirm and Pay",
+            listing_bookings_path(@listing, booking: { start_date: @start_date.to_s, end_date: @end_date.to_s }),
+            data: { turbo_method: :post },
+            class: "mt-8 inline-flex w-full items-center justify-center rounded-md bg-indigo-600 px-6 py-3 text-base font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" %>
+
+          <!-- Dynamic Total & Breakdown -->
+          <div class="mt-6 border-t border-gray-200 pt-4 text-gray-900">
+            <div class="flex justify-between">
+              <span class="text-base">Total</span>
+              <span class="text-base font-semibold" data-booking-target="total">
+                <%= number_to_currency(@listing.price * (@end_date - @start_date).to_i) if @start_date && @end_date %>
+              </span>
+            </div>
+            <p class="text-sm text-gray-500 mt-1" data-booking-target="breakdown"></p>
+          </div>
+
+          <!-- Billing & Payment Info -->
+          <dl class="mt-16 grid grid-cols-2 gap-x-4 text-sm text-gray-600">
+            <!-- ... keep your existing Billing & Payment sections -->
+          </dl>
         </div>
-        <%# button to submit post request (like a form) with start and end date %>
-
-        <%= link_to "Confirm and Pay",
-          listing_bookings_path(@listing, booking: { start_date: @start_date.to_s, end_date: @end_date.to_s }),
-          data: { turbo_method: :post },
-          class: "mt-8 inline-flex w-full items-center justify-center rounded-md bg-rose-600 px-6 py-3 text-base font-semibold text-white shadow-sm hover:bg-rose-500 focus:outline-none focus:ring-2 focus:ring-rose-600 focus:ring-offset-2" %>
-
-        <dl class="space-y-6 border-t border-gray-200 pt-6 text-sm font-medium text-gray-500">
-          <div class="flex justify-between">
-            <dt>Subtotal</dt>
-            <dd class="text-gray-900">$100</dd>
-          </div>
-
-          <div class="flex justify-between">
-            <dt>Additional Fees</dt>
-            <dd class="text-gray-900">$10</dd>
-          </div>
-
-          <div class="flex items-center justify-between border-t border-gray-200 pt-6 text-gray-900">
-            <dt class="text-base">Total</dt>
-            <dd class="text-base">$110.00</dd>
-          </div>
-        </dl>
-
-        <dl class="mt-16 grid grid-cols-2 gap-x-4 text-sm text-gray-600">
-          <div>
-            <dt class="font-medium text-gray-900">Billing Address</dt>
-            <dd class="mt-2">
-              <address class="not-italic">
-                <span class="block">Kristin Watson</span>
-                <span class="block">7363 Cynthia Pass</span>
-                <span class="block">Toronto, ON N3Y 4H8</span>
-              </address>
-            </dd>
-          </div>
-          <div>
-            <dt class="font-medium text-gray-900">Payment Information</dt>
-            <dd class="mt-2 space-y-2 sm:flex sm:space-y-0 sm:space-x-4">
-              <div class="flex-none">
-                <svg viewBox="0 0 36 24" width="36" height="24" aria-hidden="true" class="h-6 w-auto">
-                  <rect width="36" height="24" rx="4" fill="#224DBA" />
-                  <path d="M10.925 15.673H8.874l-1.538-6c-.073-.276-.228-.52-.456-.635A6.575 6.575 0 005 8.403v-.231h3.304c.456 0 .798.347.855.75l.798 4.328 2.05-5.078h1.994l-3.076 7.5zm4.216 0h-1.937L14.8 8.172h1.937l-1.595 7.5zm4.101-5.422c.057-.404.399-.635.798-.635a3.54 3.54 0 011.88.346l.342-1.615A4.808 4.808 0 0020.496 8c-1.88 0-3.248 1.039-3.248 2.481 0 1.097.969 1.673 1.653 2.02.74.346 1.025.577.968.923 0 .519-.57.75-1.139.75a4.795 4.795 0 01-1.994-.462l-.342 1.616a5.48 5.48 0 002.108.404c2.108.057 3.418-.981 3.418-2.539 0-1.962-2.678-2.077-2.678-2.942zm9.457 5.422L27.16 8.172h-1.652a.858.858 0 00-.798.577l-2.848 6.924h1.994l.398-1.096h2.45l.228 1.096h1.766zm-2.905-5.482l.57 2.827h-1.596l1.026-2.827z" fill="#fff" />
-                </svg>
-                <p class="sr-only">Visa</p>
-              </div>
-              <div class="flex-auto">
-                <p class="text-gray-900">Ending with 4242</p>
-                <p>Expires 12 / 21</p>
-              </div>
-            </dd>
-          </div>
-        </dl>
-
-
-
       </div>
     </div>
-  </div>
-</main>
+  </main>
+</div>
