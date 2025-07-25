@@ -2,6 +2,7 @@
 User.destroy_all
 Listing.destroy_all
 Booking.destroy_all
+Review.destroy_all
 
 norman_image_paths = [
   Rails.root.join("db/seeds_images/norman/photo1.webp"),
@@ -121,3 +122,12 @@ dominique_booking.save
 puts "creating george's booking"
 george_booking = Booking.new(start_date: Date.new(2025, 7, 27), end_date: Date.new(2025, 7, 28), listing: mark_listing, user: george)
 george_booking.save
+
+# Create reviews
+[norman_booking, quinn_booking, mark_booking, dominique_booking, george_booking ].each do |booking|
+  Review.create!(
+    content: "Amazing stay! The place was spotless and cozy.",
+    rating: 5,
+    booking: booking
+  )
+end
