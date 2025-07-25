@@ -10,11 +10,11 @@
     <% if booking.pending? %>
       <div class="mt-3 flex gap-x-4">
         <%= link_to "Confirm",
-          listing_booking_path(booking.listing, booking, booking: { status: :confirmed }),
+          booking_path(booking, booking: { status: :confirmed }),
           data: { turbo_method: :patch },
           class: "inline-flex items-right rounded-full bg-green-100 px-1.5 py-1 text-xs font-medium text-green-700" %>
         <%= link_to "Deny",
-          listing_booking_path(booking.listing, booking, booking: { status: :denied }),
+          booking_path(booking, booking: { status: :denied }),
           data: { turbo_method: :patch },
           class: "inline-flex items-right rounded-full bg-red-100 px-1.5 py-1 text-xs font-medium text-red-700" %>
       </div>

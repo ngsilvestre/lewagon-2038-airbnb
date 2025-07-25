@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_listing
+  before_action :set_listing, only: [:index, :new, :create]
   before_action :set_booking, only: %i[show update destroy]
 
   # GET /listings/:listing_id/bookings
@@ -22,7 +22,7 @@ class BookingsController < ApplicationController
     @booking.user = current_user
 
     if @booking.save
-      redirect_to listing_bookings_path(@listing), notice: "Booking successfully created!"
+      redirect_to booking_path(@booking), notice: "Booking successfully created!"
     else
       flash.now[:alert] = "There were errors with your booking."
       render "listings/show", status: :unprocessable_entity
@@ -58,7 +58,7 @@ class BookingsController < ApplicationController
   end
 
   def set_booking
-    @booking = @listing.bookings.find(params[:id])
+    @booking = Booking.find(params[:id])
   end
 
   def booking_params
