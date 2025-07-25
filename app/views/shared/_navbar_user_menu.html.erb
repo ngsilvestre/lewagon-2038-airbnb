@@ -23,10 +23,11 @@
         </div>
       </div>
       <div class="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
-        <a href="#" class="flex items-center justify-center gap-x-2.5 p-3 font-semibold text-gray-900 hover:bg-gray-100">
+        <%= link_to dashboard_profile_path, class: "flex items-center justify-center gap-x-2.5 p-3 font-semibold text-gray-900 hover:bg-gray-100" do%>
         <i class="fa-solid fa-user flex-none text-gray-400"></i>
           Profile
         </a>
+        <% end %>
         <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "flex items-center justify-center gap-x-2.5 p-3 font-semibold text-gray-900 hover:bg-gray-100" do %>
          <i class="fa fa-sign-out size-5 flex-none text-gray-400" aria-hidden="true"></i>
           Logout
